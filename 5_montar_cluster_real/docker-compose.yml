@@ -2,7 +2,7 @@ version: '3'
 
 services:
   nodo1:
-    image: hadoopcluster
+    image: hadoopclusterreal
     container_name: nodo1
     hostname: nodo1
     restart: unless-stopped
@@ -37,7 +37,7 @@ services:
     entrypoint: /mnt/scripts/startup_hadoop.sh
 
   nodo2:
-    image: hadoopcluster
+    image: hadoopclusterreal
     container_name: nodo2
     hostname: nodo2
     restart: unless-stopped
@@ -63,7 +63,7 @@ services:
       - "9871:9870"
 
   nodo3:
-    image: hadoopcluster
+    image: hadoopclusterreal
     container_name: nodo3
     hostname: nodo3
     restart: unless-stopped

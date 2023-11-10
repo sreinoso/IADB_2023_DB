@@ -1,2 +1,2 @@
 ## Compilación
-`docker build -t "hadoopclusterejemplos" . --no-cache`
+`docker build -t "hadoopclusterreal" . --no-cache`
