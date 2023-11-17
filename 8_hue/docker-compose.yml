@@ -1,0 +1,102 @@
+version: '3'
+
+services:
+  nodo1:
+    image: hadoophue
+    container_name: nodo1
+    hostname: nodo1
+    restart: unless-stopped
+    environment:
+      - NODE_NAME=nodo1
+      - CONFIG_PATH=/mnt/config
+      - IS_MASTER=true
+      - REPLICATION_NODES=2
+      - WORKER_NODES=nodo2,nodo3
+      - SINGLE_NODE=false
+    volumes:
+      - ./nodes/shared:/mnt/shared
+      - ./config:/mnt/config
+    extra_hosts:
+      - "nodo1:192.168.0.101"
+      - "nodo2:192.168.0.102"
+      - "nodo3:192.168.0.103"
+    networks:
+      internal:
+        ipv4_address: 192.168.0.101
+    ports:
+      - "22:22"
+      - "9000:9000"
+      - "50070:50070"
+      - "50010:50010"
+      - "50020:50020"
+      - "50075:50075"
+      - "50090:50090"
+      - "8020:8020"
+      - "9870:9870"
+      - "8088:8088"
+      - "8000:8000"
+      - "8888:8888"
+    entrypoint: /mnt/scripts/startup_hadoop.sh
+
+  nodo2:
+    image: hadoophue
+    container_name: nodo2
+    hostname: nodo2
+    restart: unless-stopped
+    environment:
+      - NODE_NAME=nodo2
+      - CONFIG_PATH=/mnt/config
+      - IS_MASTER=false
+      - REPLICATION_NODES=2
+      - WORKER_NODES=nodo2,nodo3
+      - SINGLE_NODE=false
+    volumes:
+      - ./nodes/shared:/mnt/shared
+      - ./config:/mnt/config
+    extra_hosts:
+      - "nodo1:192.168.0.101"
+      - "nodo2:192.168.0.102"
+      - "nodo3:192.168.0.103"
+    networks:
+      internal:
+        ipv4_address: 192.168.0.102
+    entrypoint: /mnt/scripts/startup_hadoop.sh
+    ports:
+      - "9871:9870"
+
+  nodo3:
+    image: hadoophue
+    container_name: nodo3
+    hostname: nodo3
+    restart: unless-stopped
+    environment:
+      - NODE_NAME=nodo3
+      - CONFIG_PATH=/mnt/config
+      - IS_MASTER=false
+      - REPLICATION_NODES=2
+      - WORKER_NODES=nodo2,nodo3
+      - SINGLE_NODE=false
+    volumes:
+      - ./nodes/shared:/mnt/shared
+      - ./config:/mnt/config
+    extra_hosts:
+      - "nodo1:192.168.0.101"
+      - "nodo2:192.168.0.102"
+      - "nodo3:192.168.0.103"
+    networks:
+      internal:
+        ipv4_address: 192.168.0.103
+    entrypoint: /mnt/scripts/startup_hadoop.sh
+    ports:
+      - "9872:9870"
+
+networks:
+  internal:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.0.0/24
+#   master:
+#     # external: true
+#   slave:
+  

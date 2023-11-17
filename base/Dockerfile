@@ -6,7 +6,8 @@ COPY hadoop-3.3.6.tar.gz /root/
 
 RUN echo "Types: deb\nURIs: http://ftp.de.debian.org/debian\nSuites: sid\nComponents: main" >> /etc/apt/sources.list.d/debian.sources &&\
     apt-get update &&\
-    apt-get install wget openjdk-8-jdk-headless vim openssh-client openssh-server net-tools inetutils-ping sudo -y &&\
+    apt-get install wget openjdk-8-jdk-headless vim openssh-client openssh-server net-tools inetutils-ping sudo git make \
+    mime-support -y &&\
     tar -xzvf hadoop-3.3.6.tar.gz &&\
     rm hadoop-3.3.6.tar.gz &&\
     mv hadoop-3.3.6 /opt/hadoop  &&\
