@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  nodo1:
+    image: hbase
+    container_name: nodo1
+    hostname: nodo1
+    restart: unless-stopped
+    environment:
+      - NODE_NAME=nodo1
+      - CONFIG_PATH=/mnt/config
+    volumes:
+      - ./nodes/shared:/mnt/shared
+      - ./config:/mnt/config
+    extra_hosts:
+      - "nodo1:192.168.0.101"
+    networks:
+      internal:
+        ipv4_address: 192.168.0.101
+    ports:
+      - "22:22"
+      - "9000:9000"
+      - "50070:50070"
+      - "50010:50010"
+      - "50020:50020"
+      - "50075:50075"
+      - "50090:50090"
+      - "8020:8020"
+      - "9870:9870"
+      - "8088:8088"
+      - "8000:8000"
+      - "8888:8888"
+      - "16010:16010"
+
+networks:
+  internal:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.0.0/24
