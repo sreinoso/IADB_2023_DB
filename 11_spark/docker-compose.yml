@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  nodo1:
+    image: hadoopspark
+    container_name: nodo1
+    hostname: nodo1
+    restart: unless-stopped
+    environment:
+      - NODE_NAME=nodo1
+      - CONFIG_PATH=/mnt/config
+    volumes:
+      - ./nodes/shared:/mnt/shared
+      - ./config:/mnt/config
+    extra_hosts:
+      - "nodo1:192.168.0.101"
+    networks:
+      internal:
+        ipv4_address: 192.168.0.101
+    ports:
+      - "22:22" #ssh
+      - "9000:9000" #hdfs
+      - "50070:50070" #hdfs
+      - "50010:50010" #hdfs
+      - "50020:50020" #hdfs
+      - "50075:50075" #hdfs
+      - "50090:50090" #hdfs
+      - "8020:8020" #hdfs
+      - "9870:9870" #hdfs
+      - "8088:8088" #yarn
+      - "8000:8000"  #hive
+      - "8080:8080" #spark
+      - "7077:7077" #spark
+      - "8888:8888" 
+      - "16010:16010" 
+
+networks:
+  internal:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.0.0/24
