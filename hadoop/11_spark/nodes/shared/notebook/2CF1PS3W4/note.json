@@ -1,0 +1,231 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n## Spark ML: Machine Learning Library\n\nLibrería de algoritmos paralelos de ML para datos masivos\n\n-   Algoritmos clásicos de machine learning: clasificación, regresión, clustering, filtrado colaborativo\n-   Otros algoritmos: extracción de características, transformación, reducción de dimensionalidad y selección\n-   Herramientas para construir, evaluar y ajustar pipelines de ML\n-   Otras utilidades: álgebra lineal, estadística, manejo de datos, etc.\n\n\nDos paquetes:\n\n-   spark.mllib: API original, basada en RDDs\n-   spark.ml: API de alto nivel, basada en DataFrames\n\nDocumentación:\n[spark.apache.org/docs/latest/mllib-guide.html](http://spark.apache.org/docs/latest/mllib-guide.html)\ny\n[spark.apache.org/docs/latest/ml-guide.html](http://spark.apache.org/docs/latest/ml-guide.html)",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 12:50:42 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eSpark ML: Machine Learning Library\u003c/h2\u003e\n\u003cp\u003eLibrería de algoritmos paralelos de ML para datos masivos\u003c/p\u003e\n\u003cul\u003e\n  \u003cli\u003eAlgoritmos clásicos de machine learning: clasificación, regresión, clustering, filtrado colaborativo\u003c/li\u003e\n  \u003cli\u003eOtros algoritmos: extracción de características, transformación, reducción de dimensionalidad y selección\u003c/li\u003e\n  \u003cli\u003eHerramientas para construir, evaluar y ajustar pipelines de ML\u003c/li\u003e\n  \u003cli\u003eOtras utilidades: álgebra lineal, estadística, manejo de datos, etc.\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eDos paquetes:\u003c/p\u003e\n\u003cul\u003e\n  \u003cli\u003espark.mllib: API original, basada en RDDs\u003c/li\u003e\n  \u003cli\u003espark.ml: API de alto nivel, basada en DataFrames\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eDocumentación:\u003cbr/\u003e\u003ca href\u003d\"http://spark.apache.org/docs/latest/mllib-guide.html\"\u003espark.apache.org/docs/latest/mllib-guide.html\u003c/a\u003e\u003cbr/\u003ey\u003cbr/\u003e\u003ca href\u003d\"http://spark.apache.org/docs/latest/ml-guide.html\"\u003espark.apache.org/docs/latest/ml-guide.html\u003c/a\u003e\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1490983577903_1507258222",
+      "id": "20170331-180617_750285813",
+      "dateCreated": "Mar 31, 2017 6:06:17 PM",
+      "dateStarted": "Jul 26, 2017 3:50:13 PM",
+      "dateFinished": "Jul 26, 2017 3:50:13 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n#### Ejemplo\n\nUsa el algoritmo de clustering [KMeans](http://spark.apache.org/docs/latest/mllib-clustering.html#k-means) para agrupar datos de vectores dispersos en dos clusters.\n",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 12:50:45 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch4\u003eEjemplo\u003c/h4\u003e\n\u003cp\u003eUsa el algoritmo de clustering \u003ca href\u003d\"http://spark.apache.org/docs/latest/mllib-clustering.html#k-means\"\u003eKMeans\u003c/a\u003e para agrupar datos de vectores dispersos en dos clusters.\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501150887334_-942460529",
+      "id": "20170727-102127_29698974",
+      "dateCreated": "Jul 27, 2017 10:21:27 AM",
+      "dateStarted": "Jul 27, 2017 10:22:48 AM",
+      "dateFinished": "Jul 27, 2017 10:22:48 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nfrom pyspark.mllib.clustering import KMeans, KMeansModel\nfrom pyspark.mllib.linalg import SparseVector\nimport numpy as np\n\n# Define un array de 4 vectores dispersos, de 3 elementos cada uno\nsparse_data \u003d [\n     SparseVector(3, {1: 1.2}),\n     SparseVector(3, {1: 1.1}),\n     SparseVector(3, {0: 0.9, 2: 1.0}),\n     SparseVector(3, {0: 1.0, 2: 1.1})\n ]\n\nfor i in range(4):\n    print(sparse_data[i].toArray())\n",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 12:45:46 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501084213172_-28808013",
+      "id": "20170726-155013_700199979",
+      "dateCreated": "Jul 26, 2017 3:50:13 PM",
+      "dateStarted": "Jul 27, 2017 12:45:46 PM",
+      "dateFinished": "Jul 27, 2017 12:45:47 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# Construye el modelo (agrupa los datos en 2 clusters)\nmodel \u003d KMeans.train(sc.parallelize(sparse_data), \\\n                     2, initializationMode\u003d\"k-means||\",\\\n                     seed\u003d50, initializationSteps\u003d5, \\\n                     epsilon\u003d1e-4)\n\nprint(\"Centros de los clusters: {0}\".format(model.clusterCenters))\n\nfor i in range(4):\n    print(\"Cluster para el nodo {0} \u003d {1}\"\n           .format(i, model.predict(sparse_data[i])))\n\npunto \u003d SparseVector(3, {0: 0.9, 1:1.0, 2: 1.0})\nprint(\"\\nCluster para el nodo {0} \u003d {1}\".format(punto, model.predict(punto)))",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 12:48:00 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501150007364_-2007850491",
+      "id": "20170727-100647_204256141",
+      "dateCreated": "Jul 27, 2017 10:06:47 AM",
+      "dateStarted": "Jul 27, 2017 12:48:01 PM",
+      "dateFinished": "Jul 27, 2017 12:48:03 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# Salva el modelo en un directorio temporal\nimport os, tempfile\npath \u003d tempfile.mkdtemp()\nmodel.save(sc, path)\n\n# Vuelve a cargar el modelo\nsameModel \u003d KMeansModel.load(sc, path)\n\nfor i in range(4):\n    print(sameModel.predict(sparse_data[i]) \u003d\u003d model.predict(sparse_data[i]))\n\nprint(sameModel.predict(punto) \u003d\u003d model.predict(punto))",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 12:49:21 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501084342522_-527290991",
+      "id": "20170726-155222_438709283",
+      "dateCreated": "Jul 26, 2017 3:52:22 PM",
+      "dateStarted": "Jul 27, 2017 12:49:21 PM",
+      "dateFinished": "Jul 27, 2017 12:49:25 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# Borra el directorio temporal\nfrom shutil import rmtree\ntry:\n     rmtree(path)\nexcept OSError:\n     pass",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 12:51:00 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501084369010_1635059125",
+      "id": "20170726-155249_436785497",
+      "dateCreated": "Jul 26, 2017 3:52:49 PM",
+      "dateStarted": "Jul 27, 2017 12:49:45 PM",
+      "dateFinished": "Jul 27, 2017 12:49:45 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 10:19:14 AM",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501150754537_-510736158",
+      "id": "20170727-101914_1022291670",
+      "dateCreated": "Jul 27, 2017 10:19:14 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Curso Spark/12 - Spark ML",
+  "id": "2CF1PS3W4",
+  "angularObjects": {
+    "2CCY33GTB:shared_process": [],
+    "2CCQCYKJM:shared_process": [],
+    "2CD8VB8N5:shared_process": [],
+    "2CEZ3N4ZK:shared_process": [],
+    "2CCN184W1:shared_process": [],
+    "2CCTDCCB9:shared_process": [],
+    "2CBRCMJB7:shared_process": [],
+    "2CDTHYD1N:shared_process": [],
+    "2CD85MNWZ:shared_process": [],
+    "2CEM88R8V:shared_process": [],
+    "2CBSSQJJR:shared_process": [],
+    "2CBG9JDC9:shared_process": [],
+    "2CBJUH5Z5:shared_process": [],
+    "2CET3TKHW:shared_process": [],
+    "2CF1VUR2D:shared_process": [],
+    "2CCZDD8PX:shared_process": [],
+    "2CESEPECG:shared_process": [],
+    "2CCZGPF6E:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

@@ -1,0 +1,1647 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n# Conceptos básicos de Spark SQL\n-   Interfaz para trabajar con datos estructurados y semiestructurados\n\n-   Capacidades principales\n    -   Lee datos de una gran variedad de fuentes: RDDs, ficheros JSON, Hive, HDFS, Parquet…\n    -   Permite consultas SQL, tanto desde programas Spark como externas usando conectores estándar (JDBC/ODBC)\n    -   Integra SQL y código Spark normal (en Python/Java/Scala)\n\n-   Contexto SQLContext: punto de entrada (equivalente al SparkContext)",
+      "user": "anonymous",
+      "dateUpdated": "Jul 28, 2017 3:16:26 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eConceptos básicos de Spark SQL\u003c/h1\u003e\n\u003cul\u003e\n  \u003cli\u003e\n  \u003cp\u003eInterfaz para trabajar con datos estructurados y semiestructurados\u003c/p\u003e\u003c/li\u003e\n  \u003cli\u003e\n    \u003cp\u003eCapacidades principales\u003c/p\u003e\n    \u003cul\u003e\n      \u003cli\u003eLee datos de una gran variedad de fuentes: RDDs, ficheros JSON, Hive, HDFS, Parquet…\u003c/li\u003e\n      \u003cli\u003ePermite consultas SQL, tanto desde programas Spark como externas usando conectores estándar (JDBC/ODBC)\u003c/li\u003e\n      \u003cli\u003eIntegra SQL y código Spark normal (en Python/Java/Scala)\u003c/li\u003e\n    \u003c/ul\u003e\n  \u003c/li\u003e\n  \u003cli\u003e\n  \u003cp\u003eContexto SQLContext: punto de entrada (equivalente al SparkContext)\u003c/p\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1490983298555_146787756",
+      "id": "20170331-180138_2110386963",
+      "dateCreated": "Mar 31, 2017 6:01:38 PM",
+      "dateStarted": "Jul 26, 2017 12:19:48 PM",
+      "dateFinished": "Jul 26, 2017 12:19:48 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n# Elemento básico: DataFrames\n-   Colección distribuida de datos organizada en columnas con nombre\n    - Conceptualmente equivalente a una tabla en una BD o a un dataframe en R o Python Pandas\n    - Al igual que los RDDs son inmutables y lazy\n    - Desarrollados dentro de Spark SQL\n        - Permite acceder a los datos mediante consultas SQL\n        - Sustitutos de los RDDs en general\n\n-   `DataSet`: nuevo tipo de datos añadido en Spark 1.6\n    -   Intenta proporcionar los beneficios de los RDDs con las optimizaciones que proporciona el motor de ejecución [Tungsten](https://databricks.com/blog/2015/04/28/project-tungsten-bringing-spark-closer-to-bare-metal.html \"Project Tungsten: Bringing Apache Spark Closer to Bare Metal\") de Spark SQL.\n    -   Sólo disponible en Scala y Java\n    -   En [Java](http://spark.apache.org/docs/latest/api/java/index.html \"Interface Row\") y [Scala](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.Row \"trait Row extends Serializable\"), un DataFrame es un DataSet de objetos de tipo Row",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 9:54:29 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eElemento básico: DataFrames\u003c/h1\u003e\n\u003cul\u003e\n  \u003cli\u003e\n    \u003cp\u003eColección distribuida de datos organizada en columnas con nombre\u003c/p\u003e\n    \u003cul\u003e\n      \u003cli\u003eConceptualmente equivalente a una tabla en una BD o a un dataframe en R o Python Pandas\u003c/li\u003e\n      \u003cli\u003eAl igual que los RDDs son inmutables y lazy\u003c/li\u003e\n      \u003cli\u003eDesarrollados dentro de Spark SQL\n        \u003cul\u003e\n          \u003cli\u003ePermite acceder a los datos mediante consultas SQL\u003c/li\u003e\n          \u003cli\u003eSustitutos de los RDDs en general\u003c/li\u003e\n        \u003c/ul\u003e\n      \u003c/li\u003e\n    \u003c/ul\u003e\n  \u003c/li\u003e\n  \u003cli\u003e\n    \u003cp\u003e\u003ccode\u003eDataSet\u003c/code\u003e: nuevo tipo de datos añadido en Spark 1.6\u003c/p\u003e\n    \u003cul\u003e\n      \u003cli\u003eIntenta proporcionar los beneficios de los RDDs con las optimizaciones que proporciona el motor de ejecución \u003ca href\u003d\"https://databricks.com/blog/2015/04/28/project-tungsten-bringing-spark-closer-to-bare-metal.html\" title\u003d\"Project Tungsten: Bringing Apache Spark Closer to Bare Metal\"\u003eTungsten\u003c/a\u003e de Spark SQL.\u003c/li\u003e\n      \u003cli\u003eSólo disponible en Scala y Java\u003c/li\u003e\n      \u003cli\u003eEn \u003ca href\u003d\"http://spark.apache.org/docs/latest/api/java/index.html\" title\u003d\"Interface Row\"\u003eJava\u003c/a\u003e y \u003ca href\u003d\"http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.Row\" title\u003d\"trait Row extends Serializable\"\u003eScala\u003c/a\u003e, un DataFrame es un DataSet de objetos de tipo Row\u003c/li\u003e\n    \u003c/ul\u003e\n  \u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501006973882_1644304454",
+      "id": "20170725-182253_831287161",
+      "dateCreated": "Jul 25, 2017 6:22:53 PM",
+      "dateStarted": "Jul 27, 2017 9:54:27 AM",
+      "dateFinished": "Jul 27, 2017 9:54:27 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n## Mejora de rendimiento\n- Spark SQL con DataFrames y DataSets se aprovecha del uso de datos con estructura para optimizar el rendimiento utilizando el optimizador de consultas [Catalyst](https://databricks.com/blog/2015/04/13/deep-dive-into-spark-sqls-catalyst-optimizer.html \"Deep Dive into Spark SQL’s Catalyst Optimizer\")  y el motor de ejecución [Tungsten](https://databricks.com/blog/2015/04/28/project-tungsten-bringing-spark-closer-to-bare-metal.html \"Project Tungsten: Bringing Apache Spark Closer to Bare Metal\").\n\n\u003cimg src\u003d\"http://localhost:8085/figs/performance.png\" alt\u003d\"Mejora de rendimiento\" style\u003d\"width: 650px;\"/\u003e\n\nFuente: [Recent performance improvements in Apache Spark: SQL, Python, DataFrames, and More](https://databricks.com/blog/2015/04/24/recent-performance-improvements-in-apache-spark-sql-python-dataframes-and-more.html \"Recent performance improvements in Apache Spark: SQL, Python, DataFrames, and More\")\n",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 9:13:16 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eMejora de rendimiento\u003c/h2\u003e\n\u003cul\u003e\n  \u003cli\u003eSpark SQL con DataFrames y DataSets se aprovecha del uso de datos con estructura para optimizar el rendimiento utilizando el optimizador de consultas \u003ca href\u003d\"https://databricks.com/blog/2015/04/13/deep-dive-into-spark-sqls-catalyst-optimizer.html\" title\u003d\"Deep Dive into Spark SQL’s Catalyst Optimizer\"\u003eCatalyst\u003c/a\u003e y el motor de ejecución \u003ca href\u003d\"https://databricks.com/blog/2015/04/28/project-tungsten-bringing-spark-closer-to-bare-metal.html\" title\u003d\"Project Tungsten: Bringing Apache Spark Closer to Bare Metal\"\u003eTungsten\u003c/a\u003e.\u003c/li\u003e\n\u003c/ul\u003e\n\u003cimg src\u003d\"http://localhost:8085/figs/performance.png\" alt\u003d\"Mejora de rendimiento\" style\u003d\"width: 650px;\"/\u003e\n\u003cp\u003eFuente: \u003ca href\u003d\"https://databricks.com/blog/2015/04/24/recent-performance-improvements-in-apache-spark-sql-python-dataframes-and-more.html\" title\u003d\"Recent performance improvements in Apache Spark: SQL, Python, DataFrames, and More\"\u003eRecent performance improvements in Apache Spark: SQL, Python, DataFrames, and More\u003c/a\u003e\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501007016635_-1650823044",
+      "id": "20170725-182336_1964309849",
+      "dateCreated": "Jul 25, 2017 6:23:36 PM",
+      "dateStarted": "Jul 27, 2017 9:13:11 AM",
+      "dateFinished": "Jul 27, 2017 9:13:11 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n# Creación de DataFrames\nVarias formas:\n\n- A partir de un RDD de listas/tuplas\n- A partir de un RDD de objetos Row\n- A partir de ficheros JSON\n- A partir de otros almacenamientos (Parquet, Hive,...)",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 9:13:45 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eCreación de DataFrames\u003c/h1\u003e\n\u003cp\u003eVarias formas:\u003c/p\u003e\n\u003cul\u003e\n  \u003cli\u003eA partir de un RDD de listas/tuplas\u003c/li\u003e\n  \u003cli\u003eA partir de un RDD de objetos Row\u003c/li\u003e\n  \u003cli\u003eA partir de ficheros JSON\u003c/li\u003e\n  \u003cli\u003eA partir de otros almacenamientos (Parquet, Hive,\u0026hellip;)\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501007480745_-1750891401",
+      "id": "20170725-183120_1850608669",
+      "dateCreated": "Jul 25, 2017 6:31:20 PM",
+      "dateStarted": "Jul 27, 2017 9:13:42 AM",
+      "dateFinished": "Jul 27, 2017 9:13:42 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### DataFrame a partir de un RDD de listas/tuplas\nA partir de un fichero, se crea un RDD de listas que se convierte en un DataFrame. \n\nLa creación del DataFrame se puede hacer de varias formas:\n\n- Infiriendo el esquema\n- Indicando el esquema de forma explícita",
+      "user": "anonymous",
+      "dateUpdated": "Jul 28, 2017 3:16:33 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eDataFrame a partir de un RDD de listas/tuplas\u003c/h3\u003e\n\u003cp\u003eA partir de un fichero, se crea un RDD de listas que se convierte en un DataFrame. \u003c/p\u003e\n\u003cp\u003eLa creación del DataFrame se puede hacer de varias formas:\u003c/p\u003e\n\u003cul\u003e\n  \u003cli\u003eInfiriendo el esquema\u003c/li\u003e\n  \u003cli\u003eIndicando el esquema de forma explícita\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501020138255_-851853197",
+      "id": "20170725-220218_1296632020",
+      "dateCreated": "Jul 25, 2017 10:02:18 PM",
+      "dateStarted": "Jul 27, 2017 9:14:21 AM",
+      "dateFinished": "Jul 27, 2017 9:14:21 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n#### DataFrame a partir de un RDD de listas/tuplas infiriendo el esquema",
+      "user": "anonymous",
+      "dateUpdated": "Jul 26, 2017 12:21:38 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch4\u003eDataFrame a partir de un RDD de listas/tuplas infiriendo el esquema\u003c/h4\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501019824898_-1013308172",
+      "id": "20170725-215704_1467608684",
+      "dateCreated": "Jul 25, 2017 9:57:04 PM",
+      "dateStarted": "Jul 26, 2017 12:21:35 PM",
+      "dateFinished": "Jul 26, 2017 12:21:35 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# Leemos el fichero apat63_99.txt.\nrdd \u003d sc.textFile(\"../datos/apat63_99.txt\").cache()\n\n# Le quitamos la cabecera y lo convertimos en un RDD de listas\nrddSplit \u003d rdd.filter(lambda l: not l.startswith(\u0027\"PATENT\"\u0027))\\\n              .map(lambda l: l.split(\",\")[0:16])\n\n# Obtengo la cabecera como una lista de nombres (sin comillas dobles)\ncabecera \u003d [c.strip(\u0027\"\u0027) for c in rdd.take(1)[0].split(\",\")[0:16]]\n\nprint(cabecera)\n\nrdd.unpersist()\nrddSplit.cache()",
+      "user": "anonymous",
+      "dateUpdated": "Jul 28, 2017 3:21:02 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501007624571_1170338432",
+      "id": "20170725-183344_475186579",
+      "dateCreated": "Jul 25, 2017 6:33:44 PM",
+      "dateStarted": "Jul 27, 2017 9:42:13 AM",
+      "dateFinished": "Jul 27, 2017 9:43:13 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# Dos formas de crear el DataFrame\n# 1. A partir del método createDataFrame de sqlContext\ndfInfer1 \u003d sqlContext.createDataFrame(rddSplit, cabecera)\n\n# 2. A partir del método toDF del RDD\ndfInfer2 \u003d rddSplit.toDF(cabecera)\n\ndfInfer1.show(10)\n\ndfInfer2.show(10)",
+      "user": "anonymous",
+      "dateUpdated": "Jul 28, 2017 3:21:02 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501008848515_-1600095547",
+      "id": "20170725-185408_596850282",
+      "dateCreated": "Jul 25, 2017 6:54:08 PM",
+      "dateStarted": "Jul 27, 2017 9:44:29 AM",
+      "dateFinished": "Jul 27, 2017 9:44:44 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# Esquema de la tabla\ndfInfer2.printSchema()",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 9:45:33 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501008495248_-1999386640",
+      "id": "20170725-184815_148723445",
+      "dateCreated": "Jul 25, 2017 6:48:15 PM",
+      "dateStarted": "Jul 27, 2017 9:45:33 AM",
+      "dateFinished": "Jul 27, 2017 9:45:33 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nLos tipos de datos no se han inferido de forma correcta\n\n- Para que los tipos se infieran correctamente, podemos partir de un RDD de listas con los tipos correctos para cada campo.",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 9:17:19 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eLos tipos de datos no se han inferido de forma correcta\u003c/p\u003e\n\u003cul\u003e\n  \u003cli\u003ePara que los tipos se infieran correctamente, podemos partir de un RDD de listas con los tipos correctos para cada campo.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501009786269_94291516",
+      "id": "20170725-190946_537362446",
+      "dateCreated": "Jul 25, 2017 7:09:46 PM",
+      "dateStarted": "Jul 27, 2017 9:17:17 AM",
+      "dateFinished": "Jul 27, 2017 9:17:17 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# Convierto cambio el tipo de los datos del RDD de listas\ndef toIntSafe(inval):\n  try:\n    return int(inval)\n  except ValueError:\n    return 0\n    \ndef toFloatSafe(inval):\n  try:\n    return float(inval)\n  except ValueError:\n    return 0.0\n\n# Dejo todos los campos como Strings, menos el campo 8 (CLAIMS) que lo pongo como entero\n# y el campo 15 (GENERAL) que lo pongo como float\nrddTipos \u003d rddSplit.map(lambda l: (l[0], \n                                   l[1],\n                                   l[2], \n                                   l[3], \n                                   l[4].strip(\u0027\"\u0027), \n                                   l[5].strip(\u0027\"\u0027), \n                                   l[6], \n                                   l[7], \n                                   toIntSafe(l[8]),\n                                   l[9],\n                                   l[10], \n                                   l[11], \n                                   l[12], \n                                   l[13], \n                                   l[14], \n                                   toFloatSafe(l[15])))\nrddTipos.cache()",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 10:26:51 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501009837048_-1652640346",
+      "id": "20170725-191037_1650651752",
+      "dateCreated": "Jul 25, 2017 7:10:37 PM",
+      "dateStarted": "Jul 27, 2017 10:26:51 AM",
+      "dateFinished": "Jul 27, 2017 10:26:51 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\ndfInfer3 \u003d sqlContext.createDataFrame(rddTipos, cabecera)\n\ndfInfer3.printSchema()\n\ndfInfer3.show(10)",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 10:27:16 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501010377755_-106540832",
+      "id": "20170725-191937_1065832243",
+      "dateCreated": "Jul 25, 2017 7:19:37 PM",
+      "dateStarted": "Jul 27, 2017 10:27:16 AM",
+      "dateFinished": "Jul 27, 2017 10:27:27 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n#### DataFrame a partir de un RDD de listas/tuplas indicando el esquema de forma explícita\n\n- Defino el esquema para los elementos de la tabla usando un StructType de StructField\n    -  StructType: Permite definir un esquema para el DataFrame a partir de una lista de StructFields\n    -  StructField: Definen el nombre y tipo de cada columna, así como si es nullable o no\n\nTipos definidos en \u003chttps://spark.apache.org/docs/1.6.2/api/python/pyspark.sql.html#module-pyspark.sql.types\u003e",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 9:54:07 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch4\u003eDataFrame a partir de un RDD de listas/tuplas indicando el esquema de forma explícita\u003c/h4\u003e\n\u003cul\u003e\n  \u003cli\u003eDefino el esquema para los elementos de la tabla usando un StructType de StructField\n    \u003cul\u003e\n      \u003cli\u003eStructType: Permite definir un esquema para el DataFrame a partir de una lista de StructFields\u003c/li\u003e\n      \u003cli\u003eStructField: Definen el nombre y tipo de cada columna, así como si es nullable o no\u003c/li\u003e\n    \u003c/ul\u003e\n  \u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eTipos definidos en \u003ca href\u003d\"https://spark.apache.org/docs/1.6.2/api/python/pyspark.sql.html#module-pyspark.sql.types\"\u003ehttps://spark.apache.org/docs/1.6.2/api/python/pyspark.sql.html#module-pyspark.sql.types\u003c/a\u003e\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501019768345_-915658573",
+      "id": "20170725-215608_1352731243",
+      "dateCreated": "Jul 25, 2017 9:56:08 PM",
+      "dateStarted": "Jul 27, 2017 9:53:53 AM",
+      "dateFinished": "Jul 27, 2017 9:53:53 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nfrom pyspark.sql.types import *\n\n# Defino el esquema para los elementos de la tabla\n# StructType -\u003e Permite definir un esquema para el DF a partir de una lista de StructFields\n# StructField -\u003e Definen el nombre y tipo de cada columna, así como si es nullable o no (campo True)\npostSchema \u003d StructType([\n  StructField(cabecera[0], StringType(), False),\n  StructField(cabecera[1], StringType(), True),\n  StructField(cabecera[2], StringType(), True),\n  StructField(cabecera[3], StringType(), True),\n  StructField(cabecera[4], StringType(), True),\n  StructField(cabecera[5], StringType(), True),\n  StructField(cabecera[6], StringType(), True),\n  StructField(cabecera[7], StringType(), True),\n  StructField(cabecera[8], IntegerType(), True),\n  StructField(cabecera[9], StringType(), True),\n  StructField(cabecera[10], StringType(), True),\n  StructField(cabecera[11], StringType(), True),\n  StructField(cabecera[12], StringType(), False),\n  StructField(cabecera[13], StringType(), True),\n  StructField(cabecera[14], StringType(), True),\n  StructField(cabecera[15], FloatType(), True)\n  ])\n\n# Creo el DataFrame\ndfSchema \u003d sqlContext.createDataFrame(rddTipos, postSchema).cache()\n\nrddTipos.unpersist()\n\ndfSchema.printSchema()\n\ndfSchema.show(10)",
+      "user": "anonymous",
+      "dateUpdated": "Jul 28, 2017 3:21:02 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501012610492_-938733566",
+      "id": "20170725-195650_922889957",
+      "dateCreated": "Jul 25, 2017 7:56:50 PM",
+      "dateStarted": "Jul 27, 2017 10:29:57 AM",
+      "dateFinished": "Jul 27, 2017 10:30:19 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### DataFrame a partir de un RDD de objetos Row\n\n- [Row](https://spark.apache.org/docs/1.6.2/api/python/pyspark.sql.html#pyspark.sql.Row \"Objeto Row\") Representa una fila de datos en un DataFrame",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 9:25:19 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eDataFrame a partir de un RDD de objetos Row\u003c/h3\u003e\n\u003cul\u003e\n  \u003cli\u003e\u003ca href\u003d\"https://spark.apache.org/docs/1.6.2/api/python/pyspark.sql.html#pyspark.sql.Row\" title\u003d\"Objeto Row\"\u003eRow\u003c/a\u003e Representa una fila de datos en un DataFrame\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501014033826_-1894256674",
+      "id": "20170725-202033_985111719",
+      "dateCreated": "Jul 25, 2017 8:20:33 PM",
+      "dateStarted": "Jul 27, 2017 9:25:12 AM",
+      "dateFinished": "Jul 27, 2017 9:25:12 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nfrom pyspark.sql import Row\n\n# Convierto el RDD de listas en un RDD de objetos Row\nrddRows \u003d rddSplit.map(lambda l: Row(Patent \u003d l[0], \n                                     Gyear \u003d l[1], \n                                     Gdate \u003d l[2], \n                                     Appyear \u003d l[3],\n                                     Country \u003d l[4],\n                                     Postate \u003d l[5],\n                                     Assignee \u003d l[6], \n                                     Asscode \u003d l[7],\n                                     Claims \u003d toIntSafe(l[8]),\n                                     Nclass \u003d l[9], \n                                     Cat \u003d l[10], \n                                     Subcat \u003d l[11], \n                                     Cmade \u003d l[12],\n                                     Creceive \u003d l[13],\n                                     Ratiocit \u003d l[14],\n                                     General \u003d toFloatSafe(l[15])))\n\n# El esquema se infiere de los tipos\ndfRows \u003d sqlContext.createDataFrame(rddRows)\n\nprint(\"Esquema de la tabla en árbol\")\ndfRows.printSchema()\n\nprint(\"Nombres de las columnas\\n{0}\\n\".\n      format(dfRows.columns))\n\nprint(\"Tipos de las columnas\\n{0}\\n\".\n      format(dfRows.dtypes))\n      \nrddSplit.unpersist()\n\ndfRows.show(10)",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 10:33:17 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501019541769_-1175488842",
+      "id": "20170725-215221_834206081",
+      "dateCreated": "Jul 25, 2017 9:52:21 PM",
+      "dateStarted": "Jul 27, 2017 10:33:17 AM",
+      "dateFinished": "Jul 27, 2017 10:33:18 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Conversion de un DataFrame en un RDD de objetos Row\n\n- Podemos convertir un DataFrame en un RDD",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 9:27:31 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eConversion de un DataFrame en un RDD de objetos Row\u003c/h3\u003e\n\u003cul\u003e\n  \u003cli\u003ePermite convertir un DataFrame en un RDD\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501063095207_1423759620",
+      "id": "20170726-095815_1193621717",
+      "dateCreated": "Jul 26, 2017 9:58:15 AM",
+      "dateStarted": "Jul 27, 2017 9:27:04 AM",
+      "dateFinished": "Jul 27, 2017 9:27:04 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nrddRows2 \u003d dfSchema.rdd\n\nprint(\"Muestra un elemento del nuevo RDD\")\nprint(rddRows2.take(1))\n\nprint(\"Aplicamos un map al RDD\")\nprint(rddRows2.map(lambda r: (r.COUNTRY, r.PATENT)).take(1))",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 10:34:32 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501063132135_-1042450181",
+      "id": "20170726-095852_1501610176",
+      "dateCreated": "Jul 26, 2017 9:58:52 AM",
+      "dateStarted": "Jul 27, 2017 10:34:32 AM",
+      "dateFinished": "Jul 27, 2017 10:34:32 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### DataFrame a partir de un fichero JSON",
+      "user": "anonymous",
+      "dateUpdated": "Jul 26, 2017 12:23:43 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eDataFrame a partir de un fichero JSON\u003c/h3\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501062441339_-557242424",
+      "id": "20170726-094721_919867041",
+      "dateCreated": "Jul 26, 2017 9:47:21 AM",
+      "dateStarted": "Jul 26, 2017 12:14:43 PM",
+      "dateFinished": "Jul 26, 2017 12:14:44 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\ncat ../datos/gente.json",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 10:35:11 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/sh"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501062975484_-390483041",
+      "id": "20170726-095615_1568675946",
+      "dateCreated": "Jul 26, 2017 9:56:15 AM",
+      "dateStarted": "Jul 27, 2017 10:35:11 AM",
+      "dateFinished": "Jul 27, 2017 10:35:12 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\ndfJson \u003d sqlContext.read.json(\"../datos/gente.json\")\n\ndfJson.show()",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 10:37:49 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501062643622_-1023113689",
+      "id": "20170726-095043_1086853436",
+      "dateCreated": "Jul 26, 2017 9:50:43 AM",
+      "dateStarted": "Jul 27, 2017 10:37:49 AM",
+      "dateFinished": "Jul 27, 2017 10:37:50 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n#### Guardar el DataFrame como fichero JSON",
+      "user": "anonymous",
+      "dateUpdated": "Jul 26, 2017 12:24:04 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch4\u003eGuardar el DataFrame como fichero JSON\u003c/h4\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501071071921_-1287793647",
+      "id": "20170726-121111_950278583",
+      "dateCreated": "Jul 26, 2017 12:11:11 PM",
+      "dateStarted": "Jul 26, 2017 12:15:40 PM",
+      "dateFinished": "Jul 26, 2017 12:15:40 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\ndfSchema.write.json(\"/tmp/apat63_99-json\")",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 10:38:27 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501071337317_-1242967373",
+      "id": "20170726-121537_2145137168",
+      "dateCreated": "Jul 26, 2017 12:15:37 PM",
+      "dateStarted": "Jul 27, 2017 10:38:28 AM",
+      "dateFinished": "Jul 27, 2017 10:39:43 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\nls -l /tmp/apat63_99-json",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 10:39:50 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/sh"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501071419448_832843244",
+      "id": "20170726-121659_1438386264",
+      "dateCreated": "Jul 26, 2017 12:16:59 PM",
+      "dateStarted": "Jul 27, 2017 10:39:50 AM",
+      "dateFinished": "Jul 27, 2017 10:39:51 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\nhead -n 10 /tmp/apat63_99-json/",
+      "user": "anonymous",
+      "dateUpdated": "Jul 28, 2017 3:21:03 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/sh"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501071466152_-1013520755",
+      "id": "20170726-121746_1205005033",
+      "dateCreated": "Jul 26, 2017 12:17:46 PM",
+      "dateStarted": "Jul 27, 2017 10:40:18 AM",
+      "dateFinished": "Jul 27, 2017 10:40:18 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n## Operaciones básicas",
+      "user": "anonymous",
+      "dateUpdated": "Jul 26, 2017 12:24:21 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eOperaciones básicas\u003c/h2\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501062902680_241736023",
+      "id": "20170726-095502_536625236",
+      "dateCreated": "Jul 26, 2017 9:55:02 AM",
+      "dateStarted": "Jul 26, 2017 10:01:01 AM",
+      "dateFinished": "Jul 26, 2017 10:01:01 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Selección y eliminación de columnas",
+      "user": "anonymous",
+      "dateUpdated": "Jul 26, 2017 12:24:27 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eSelección y eliminación de columnas\u003c/h3\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501063227020_-169669465",
+      "id": "20170726-100027_1135470399",
+      "dateCreated": "Jul 26, 2017 10:00:27 AM",
+      "dateStarted": "Jul 26, 2017 10:45:36 AM",
+      "dateFinished": "Jul 26, 2017 10:45:42 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\ndfParcial \u003d dfSchema.select(\"PATENT\", \"GYEAR\", \"COUNTRY\", \"CLAIMS\")\ndfParcial.show(10)\n\nprint(\"El objeto dfParcial es de tipo {0}\".format(type(dfParcial)))\ndfSchema.unpersist()\ndfParcial.cache()",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 10:42:38 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501063269087_-1880217103",
+      "id": "20170726-100109_1070781210",
+      "dateCreated": "Jul 26, 2017 10:01:09 AM",
+      "dateStarted": "Jul 27, 2017 10:42:38 AM",
+      "dateFinished": "Jul 27, 2017 10:42:39 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# También es posible crear objetos de tipo Column\ncolPatent \u003d dfParcial[\"PATENT\"]\ncolCountry \u003d dfParcial.COUNTRY\nprint(\"El objeto colPatent es de tipo {0}\".format(type(colPatent)))\nprint(\"El objeto colCountry es de tipo {0}\".format(type(colCountry)))",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 10:43:33 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501063495060_423581046",
+      "id": "20170726-100455_1921395988",
+      "dateCreated": "Jul 26, 2017 10:04:55 AM",
+      "dateStarted": "Jul 27, 2017 10:43:33 AM",
+      "dateFinished": "Jul 27, 2017 10:43:33 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# Y crear un DataFrame a partir de objetos Column, renombrando columnas\ndfParcial2 \u003d dfParcial.select(colPatent.alias(\"Patente\"), colCountry.alias(\"País\"), dfParcial.GYEAR.alias(\"Año\"))\ndfParcial2.show()",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 10:44:25 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501063691986_-1414689547",
+      "id": "20170726-100811_540601060",
+      "dateCreated": "Jul 26, 2017 10:08:11 AM",
+      "dateStarted": "Jul 27, 2017 10:44:25 AM",
+      "dateFinished": "Jul 27, 2017 10:44:40 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# Se pueden eliminar columnas\ndfParcial3 \u003d dfParcial.drop(\"CLAIMS\")\ndfParcial3.show(10)",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 10:45:04 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501063844140_1479007455",
+      "id": "20170726-101044_1874194948",
+      "dateCreated": "Jul 26, 2017 10:10:44 AM",
+      "dateStarted": "Jul 27, 2017 10:45:04 AM",
+      "dateFinished": "Jul 27, 2017 10:45:04 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Filtrado",
+      "user": "anonymous",
+      "dateUpdated": "Jul 26, 2017 12:25:48 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eFiltrado\u003c/h3\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501063925420_1782128291",
+      "id": "20170726-101205_2118965513",
+      "dateCreated": "Jul 26, 2017 10:12:05 AM",
+      "dateStarted": "Jul 26, 2017 12:11:02 PM",
+      "dateFinished": "Jul 26, 2017 12:11:02 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# Patentes con CLAIMS \u003e 0\ndfClaims \u003d dfParcial.where(\u0027CLAIMS \u003e 0\u0027)\nprint(\"Número de patentes con reivindicaciones: {0}\\n\".\\\n       format(dfClaims.count()))\ndfClaims.show(1)",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 10:45:52 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python",
+        "editorHide": false,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501063976657_-272938178",
+      "id": "20170726-101256_214541223",
+      "dateCreated": "Jul 26, 2017 10:12:56 AM",
+      "dateStarted": "Jul 27, 2017 10:45:52 AM",
+      "dateFinished": "Jul 27, 2017 10:46:40 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# Patentes con inventor español\ndfEsp \u003d dfParcial.filter(colCountry.like(\u0027ES\u0027))\nprint(\"Número de patentes con inventor español: {0}\\n\".\\\n       format(dfEsp.count()))\ndfEsp.show(1)",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 10:47:27 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501072081242_309366912",
+      "id": "20170726-122801_394623812",
+      "dateCreated": "Jul 26, 2017 12:28:01 PM",
+      "dateStarted": "Jul 27, 2017 10:47:28 AM",
+      "dateFinished": "Jul 27, 2017 10:47:28 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Ordenación y agrupamiento",
+      "user": "anonymous",
+      "dateUpdated": "Jul 26, 2017 12:26:52 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eOrdenación y agrupamiento\u003c/h3\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501068695134_972435407",
+      "id": "20170726-113135_1945583236",
+      "dateCreated": "Jul 26, 2017 11:31:35 AM",
+      "dateStarted": "Jul 26, 2017 12:26:50 PM",
+      "dateFinished": "Jul 26, 2017 12:26:50 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\ndfParcial.orderBy(\u0027CLAIMS\u0027, ascending\u003dFalse).show(10)",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 10:55:53 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501068755082_-498166834",
+      "id": "20170726-113235_831398248",
+      "dateCreated": "Jul 26, 2017 11:32:35 AM",
+      "dateStarted": "Jul 27, 2017 10:55:53 AM",
+      "dateFinished": "Jul 27, 2017 10:55:54 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\ngrupoPorPais \u003d dfParcial.groupBy(\u0027COUNTRY\u0027)\nprint(type(grupoPorPais))",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 10:56:15 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501068914017_-1921170770",
+      "id": "20170726-113514_1915099572",
+      "dateCreated": "Jul 26, 2017 11:35:14 AM",
+      "dateStarted": "Jul 27, 2017 10:56:16 AM",
+      "dateFinished": "Jul 27, 2017 10:56:16 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nprint(\"Número de patentes por país\")\ngrupoPorPais.count().orderBy(\u0027count\u0027, ascending\u003dFalse).show()",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 10:56:55 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501072067612_-1659039109",
+      "id": "20170726-122747_2094162056",
+      "dateCreated": "Jul 26, 2017 12:27:47 PM",
+      "dateStarted": "Jul 27, 2017 10:56:56 AM",
+      "dateFinished": "Jul 27, 2017 10:57:02 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nprint(\"Media de reivindicaciones por país\")\ngrupoPorPais.avg(\u0027CLAIMS\u0027).orderBy(\u0027COUNTRY\u0027).show()",
+      "user": "anonymous",
+      "dateUpdated": "Jul 28, 2017 3:18:32 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501072049865_494184302",
+      "id": "20170726-122729_1081734719",
+      "dateCreated": "Jul 26, 2017 12:27:29 PM",
+      "dateStarted": "Jul 27, 2017 10:57:38 AM",
+      "dateFinished": "Jul 27, 2017 10:57:44 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Joins\n",
+      "user": "anonymous",
+      "dateUpdated": "Jul 28, 2017 3:18:28 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eJoins\u003c/h3\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501092557023_1332060818",
+      "id": "20170726-180917_1596368084",
+      "dateCreated": "Jul 26, 2017 6:09:17 PM",
+      "dateStarted": "Jul 26, 2017 6:09:35 PM",
+      "dateFinished": "Jul 26, 2017 6:09:38 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\ndfEsp80 \u003d dfEsp.where(\u0027int(GYEAR) \u003e 1979 and int(GYEAR) \u003c 1990\u0027)\n\ndfPatYear \u003d dfEsp80.select(dfEsp80.PATENT.alias(\"Patente\"), dfEsp80[\"GYEAR\"].alias(\"Año\"))\ndfPatYear.show(5)\ndfPatCountry \u003d dfEsp80.select(dfEsp80.COUNTRY.alias(\"País\"), dfEsp80.PATENT.alias(\"Patente\"))\ndfPatCountry.show(5)\n\ndfPatYear.join(dfPatCountry, \"Patente\", \"inner\").show(5)",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 10:59:18 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501092852468_-1782266990",
+      "id": "20170726-181412_1687747946",
+      "dateCreated": "Jul 26, 2017 6:14:12 PM",
+      "dateStarted": "Jul 27, 2017 10:59:18 AM",
+      "dateFinished": "Jul 27, 2017 10:59:26 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Funciones escalares y agregados\n\nSpark ofrece un ámplio abanico de funciones para operar con los DataFrames:\n\n- Funciones matemáticas: abs, log, hypot, etc.\n- Operaciones con strings: lenght, concat, etc.\n- Operaciones con fechas: year, date_add, etc.\n- Operaciones de agregación: min, max, count, avg, sum, sumDistinct, stddev, variance, kurtosis, skewness, first, last, etc.\n\nUna descripción de estas funciones se puede encontrar en \u003chttp://spark.apache.org/docs/latest/api/python/pyspark.sql.html#module-pyspark.sql.functions\u003e",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 10:04:48 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eFunciones escalares y agregados\u003c/h3\u003e\n\u003cp\u003eSpark ofrece un ámplio abanico de funciones para operar con los DataFrames:\u003c/p\u003e\n\u003cul\u003e\n  \u003cli\u003eFunciones matemáticas: abs, log, hypot, etc.\u003c/li\u003e\n  \u003cli\u003eOperaciones con strings: lenght, concat, etc.\u003c/li\u003e\n  \u003cli\u003eOperaciones con fechas: year, date_add, etc.\u003c/li\u003e\n  \u003cli\u003eOperaciones de agregación: min, max, count, avg, sum, sumDistinct, stddev, variance, kurtosis, skewness, first, last, etc.\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eUna descripción de estas funciones se puede encontrar en \u003ca href\u003d\"http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#module-pyspark.sql.functions\"\u003ehttp://spark.apache.org/docs/latest/api/python/pyspark.sql.html#module-pyspark.sql.functions\u003c/a\u003e\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501068140591_714672257",
+      "id": "20170726-112220_1686810242",
+      "dateCreated": "Jul 26, 2017 11:22:20 AM",
+      "dateStarted": "Jul 27, 2017 10:04:38 AM",
+      "dateFinished": "Jul 27, 2017 10:04:38 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# Obtener el máximo, mínimo, media y desviación estándard de las reivindicaciones de las patentes españolas\nfrom pyspark.sql.functions import *\ndfEsp.select(max(\"CLAIMS\"), min(\"CLAIMS\"),avg(\"CLAIMS\"),stddev(\"CLAIMS\")).show()",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 11:01:20 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501064215601_-534630371",
+      "id": "20170726-101655_57164927",
+      "dateCreated": "Jul 26, 2017 10:16:55 AM",
+      "dateStarted": "Jul 27, 2017 11:01:20 AM",
+      "dateFinished": "Jul 27, 2017 11:01:21 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# Otra forma de hacer lo mismo\ndfEsp.describe(\"CLAIMS\").show()",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 11:01:59 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501072152589_2035643282",
+      "id": "20170726-122912_1234058004",
+      "dateCreated": "Jul 26, 2017 12:29:12 PM",
+      "dateStarted": "Jul 27, 2017 11:02:00 AM",
+      "dateFinished": "Jul 27, 2017 11:02:01 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Consultas SQL\n",
+      "user": "anonymous",
+      "dateUpdated": "Jul 26, 2017 12:29:26 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eConsultas SQL\u003c/h3\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501067567533_-1313370367",
+      "id": "20170726-111247_1150237360",
+      "dateCreated": "Jul 26, 2017 11:12:47 AM",
+      "dateStarted": "Jul 26, 2017 12:29:08 PM",
+      "dateFinished": "Jul 26, 2017 12:29:08 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# Registra la tabla para usar SQL\ndfParcial.registerTempTable(\"patentinfo\")\nsqlContext.sql(\"SELECT COUNTRY,CLAIMS FROM patentinfo WHERE CLAIMS \u003e\u003d 100\").show()",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 11:03:17 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501069697834_-702540187",
+      "id": "20170726-114817_740642844",
+      "dateCreated": "Jul 26, 2017 11:48:17 AM",
+      "dateStarted": "Jul 27, 2017 11:03:17 AM",
+      "dateFinished": "Jul 27, 2017 11:03:19 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### UDFs: Funciones definidas por el usuario\nSi queremos una función que no está implementada, podemos crear nuestra propia función que opera sobre columnas.",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 11:10:20 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eUDFs: Funciones definidas por el usuario\u003c/h3\u003e\n\u003cp\u003eSi queremos una función que no está implementada, podemos crear nuestra propia función que opera sobre columnas.\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501070268685_-1395087684",
+      "id": "20170726-115748_1103653617",
+      "dateCreated": "Jul 26, 2017 11:57:48 AM",
+      "dateStarted": "Jul 27, 2017 11:10:17 AM",
+      "dateFinished": "Jul 27, 2017 11:10:17 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nfrom pyspark.sql.functions import udf\nfrom pyspark.sql.types import BooleanType\nesPar \u003d udf(lambda n: not n%2, BooleanType())",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 11:05:16 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501070116604_-1311043858",
+      "id": "20170726-115516_1599720468",
+      "dateCreated": "Jul 26, 2017 11:55:16 AM",
+      "dateStarted": "Jul 27, 2017 11:05:16 AM",
+      "dateFinished": "Jul 27, 2017 11:05:17 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nprint(\"Información sobre si el número de reivindicaciones es par o impar.\")\ndfParcial.select(dfParcial.PATENT, dfParcial.CLAIMS, esPar(dfParcial.CLAIMS).alias(\"Par?\")).orderBy(dfParcial.CLAIMS, ascending\u003dFalse).show()",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 11:05:20 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501070671677_404917623",
+      "id": "20170726-120431_296296881",
+      "dateCreated": "Jul 26, 2017 12:04:31 PM",
+      "dateStarted": "Jul 27, 2017 11:05:20 AM",
+      "dateFinished": "Jul 27, 2017 11:05:37 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n## Tarea\nA partir del fichero `cite75_99.txt`vuelve a obtener el número de citas por patente pero usando un DataFrame. Obtén las tres patente que más veces han sido citadas, y el máximo, mínimo y media del número de citas de todas las patentes.\n",
+      "user": "anonymous",
+      "dateUpdated": "Jul 28, 2017 3:19:39 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eTarea\u003c/h2\u003e\n\u003cp\u003eA partir del fichero \u003ccode\u003ecite75_99.txt\u003c/code\u003evuelve a obtener el número de citas por patente pero usando un DataFrame. Obtén las tres patente que más veces han sido citadas, y el máximo, mínimo y media del número de citas de todas las patentes.\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501098414708_276627758",
+      "id": "20170726-194654_935458952",
+      "dateCreated": "Jul 26, 2017 7:46:54 PM",
+      "dateStarted": "Jul 27, 2017 11:10:38 AM",
+      "dateFinished": "Jul 27, 2017 11:10:38 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark",
+      "user": "anonymous",
+      "dateUpdated": "Jul 26, 2017 8:12:15 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501099522278_1582631325",
+      "id": "20170726-200522_71479915",
+      "dateCreated": "Jul 26, 2017 8:05:22 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Curso Spark/10 - Spark SQL",
+  "id": "2CEEYZDYV",
+  "angularObjects": {
+    "2CCY33GTB:shared_process": [],
+    "2CCQCYKJM:shared_process": [],
+    "2CD8VB8N5:shared_process": [],
+    "2CEZ3N4ZK:shared_process": [],
+    "2CCN184W1:shared_process": [],
+    "2CCTDCCB9:shared_process": [],
+    "2CBRCMJB7:shared_process": [],
+    "2CDTHYD1N:shared_process": [],
+    "2CD85MNWZ:shared_process": [],
+    "2CEM88R8V:shared_process": [],
+    "2CBSSQJJR:shared_process": [],
+    "2CBG9JDC9:shared_process": [],
+    "2CBJUH5Z5:shared_process": [],
+    "2CET3TKHW:shared_process": [],
+    "2CF1VUR2D:shared_process": [],
+    "2CCZDD8PX:shared_process": [],
+    "2CESEPECG:shared_process": [],
+    "2CCZGPF6E:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

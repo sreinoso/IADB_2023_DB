@@ -1,0 +1,230 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\nRDDs numéricos\n--------------\n\nFunciones de estadística descriptiva implementadas en Spark\n\n  Método              |  Descripción                       \n  ------------------- | ---------------------------------- \n  stats()             | Resumen de estadísticas            \n  mean()              | Media aritmética\n  sum(), max(), min() | Suma, máximo y mínimo\n  variance()          | Varianza de los elementos\n  sampleVariance()    | Varianza de una muestra\n  stdev()             | Desviación estándar\n  sampleStdev()       | Desviación estándar de una muestra\n  histogram()         | Histograma",
+      "user": "anonymous",
+      "dateUpdated": "Jul 28, 2017 3:11:03 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eRDDs numéricos\u003c/h2\u003e\n\u003cp\u003eFunciones de estadística descriptiva implementadas en Spark\u003c/p\u003e\n\u003ctable\u003e\n  \u003cthead\u003e\n    \u003ctr\u003e\n      \u003cth\u003eMétodo \u003c/th\u003e\n      \u003cth\u003eDescripción\u003c/th\u003e\n    \u003c/tr\u003e\n  \u003c/thead\u003e\n  \u003ctbody\u003e\n    \u003ctr\u003e\n      \u003ctd\u003estats() \u003c/td\u003e\n      \u003ctd\u003eResumen de estadísticas\u003c/td\u003e\n    \u003c/tr\u003e\n    \u003ctr\u003e\n      \u003ctd\u003emean() \u003c/td\u003e\n      \u003ctd\u003eMedia aritmética\u003c/td\u003e\n    \u003c/tr\u003e\n    \u003ctr\u003e\n      \u003ctd\u003esum(), max(), min() \u003c/td\u003e\n      \u003ctd\u003eSuma, máximo y mínimo\u003c/td\u003e\n    \u003c/tr\u003e\n    \u003ctr\u003e\n      \u003ctd\u003evariance() \u003c/td\u003e\n      \u003ctd\u003eVarianza de los elementos\u003c/td\u003e\n    \u003c/tr\u003e\n    \u003ctr\u003e\n      \u003ctd\u003esampleVariance() \u003c/td\u003e\n      \u003ctd\u003eVarianza de una muestra\u003c/td\u003e\n    \u003c/tr\u003e\n    \u003ctr\u003e\n      \u003ctd\u003estdev() \u003c/td\u003e\n      \u003ctd\u003eDesviación estándar\u003c/td\u003e\n    \u003c/tr\u003e\n    \u003ctr\u003e\n      \u003ctd\u003esampleStdev() \u003c/td\u003e\n      \u003ctd\u003eDesviación estándar de una muestra\u003c/td\u003e\n    \u003c/tr\u003e\n    \u003ctr\u003e\n      \u003ctd\u003ehistogram() \u003c/td\u003e\n      \u003ctd\u003eHistograma\u003c/td\u003e\n    \u003c/tr\u003e\n  \u003c/tbody\u003e\n\u003c/table\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1499682409821_1937504827",
+      "id": "20170710-102649_699397831",
+      "dateCreated": "Jul 10, 2017 10:26:49 AM",
+      "dateStarted": "Jul 10, 2017 10:38:08 AM",
+      "dateFinished": "Jul 10, 2017 10:38:08 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nimport numpy as np\n\n# Un RDD con datos aleatorios de una distribución normal\nnrdd \u003d sc.parallelize(np.random.normal(size\u003d10000)).cache()\n\n# Resumen de estadísticas\nsts \u003d nrdd.stats()\n\nprint(\"Resumen de estadísticas:\\n {0}\\n\".format(sts))",
+      "user": "anonymous",
+      "dateUpdated": "Jul 13, 2017 5:20:01 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1499683152555_-1513069973",
+      "id": "20170710-103912_570261895",
+      "dateCreated": "Jul 10, 2017 10:39:12 AM",
+      "dateStarted": "Jul 13, 2017 4:35:04 PM",
+      "dateFinished": "Jul 13, 2017 4:35:05 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nfrom math import fabs\n\n# Filtra outliers\nstddev \u003d sts.stdev()\navg \u003d sts.mean()\n\nfrdd \u003d nrdd.filter(lambda x: fabs(x - avg) \u003c 3*stddev).cache()\n\nprint(\"Número de outliers: {0}\".format(sts.count() - frdd.count()))",
+      "user": "anonymous",
+      "dateUpdated": "Jul 28, 2017 3:11:53 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1499775871039_964982210",
+      "id": "20170711-122431_39387483",
+      "dateCreated": "Jul 11, 2017 12:24:31 PM",
+      "dateStarted": "Jul 13, 2017 4:35:08 PM",
+      "dateFinished": "Jul 13, 2017 4:35:09 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n#import base64\nimport matplotlib.pyplot as plt; plt.rcdefaults()\nimport matplotlib.pyplot as plt\nimport StringIO\n\ndef show(p):\n    img \u003d StringIO.StringIO()\n    p.savefig(img, format\u003d\u0027svg\u0027)\n    img.seek(0)\n    print \"%html \u003cdiv style\u003d\u0027width:600px\u0027\u003e\" + img.buf + \"\u003c/div\u003e\"\n\n# Obtiene un histograma con 10 grupos\nx,y \u003d frdd.histogram(10)\n\n# Limpia la gráfica\nplt.gcf().clear()\n\nplt.bar(x[:-1], y, width\u003d0.6)\nplt.xlabel(u\u0027Valores\u0027)\nplt.ylabel(u\u0027Número de ocurrencias\u0027)\nplt.title(u\u0027Histograma\u0027)\n\nshow(plt)",
+      "user": "anonymous",
+      "dateUpdated": "Jul 13, 2017 4:36:23 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1499777182649_-293474556",
+      "id": "20170711-124622_1013514896",
+      "dateCreated": "Jul 11, 2017 12:46:22 PM",
+      "dateStarted": "Jul 13, 2017 4:36:23 PM",
+      "dateFinished": "Jul 13, 2017 4:36:24 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### TAREA: Número de patentes por año de un país\n\nA partir del fichero apat63_99.txt obtén y representa, por año de concesión (\"GYEAR\"), el número de patentes cuyo primer inventor es de EEUU (código \"US\" en \"COUNTRY\"), usando un gráfico de barras. Obtén también el número medio de patentes concedidas.",
+      "user": "anonymous",
+      "dateUpdated": "Jul 28, 2017 3:11:39 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eTAREA: Número de patentes por año de un país\u003c/h3\u003e\n\u003cp\u003eA partir del fichero apat63_99.txt obtén y representa, por año de concesión (\u0026ldquo;GYEAR\u0026rdquo;), el número de patentes cuyo primer inventor es de EEUU (código \u0026ldquo;US\u0026rdquo; en \u0026ldquo;COUNTRY\u0026rdquo;), usando un gráfico de barras. Obtén también el número medio de patentes concedidas.\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1499777200842_-1630076911",
+      "id": "20170711-124640_1982602394",
+      "dateCreated": "Jul 11, 2017 12:46:40 PM",
+      "dateStarted": "Jul 13, 2017 5:06:06 PM",
+      "dateFinished": "Jul 13, 2017 5:06:06 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nimport numpy as np\nimport matplotlib.pyplot as plt; plt.rcdefaults()\nimport matplotlib.pyplot as plt\nimport StringIO\n\ndef show(p):\n    img \u003d StringIO.StringIO()\n    p.savefig(img, format\u003d\u0027svg\u0027)\n    img.seek(0)\n    print \"%html \u003cdiv style\u003d\u0027width:1200px\u0027\u003e\" + img.buf + \"\u003c/div\u003e\"\n    \n# Lee los datos como un rdd\n# rdd \u003d ....\n\n\n\n# Obtiene un rdd que nos proporcione, para las patentes \"US\" el número de \n# patentes por año (año, número_de_patentes) ordenadas por año\n#yearNum \u003d ....\n\n# Calcula la media del número de patentes\n#media \u003d ....\n\n#print(\"Media de patentes entre el año {0} y el {1} \u003d {2}\".format(....))\n\n\n# Crea el gráfico\n# Obtén los años como una lista\n#years \u003d ....\n# Obtén el número de patentes como una lista\n#numPats \u003d ....\n\n# Descomentar para gráfica\n#plt.gcf().clear() \n#yearsRange \u003d np.arange(len(years))\n#plt.bar(yearsRange, numPats, align\u003d\u0027center\u0027)\n#plt.xticks(yearsRange, years, fontsize\u003d10, rotation\u003d90)\n#plt.ylabel(\"N Patentes\")\n#show(plt)\n",
+      "user": "anonymous",
+      "dateUpdated": "Jul 13, 2017 5:20:01 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1499949143216_-877320858",
+      "id": "20170713-123223_1862299352",
+      "dateCreated": "Jul 13, 2017 12:32:23 PM",
+      "dateStarted": "Jul 13, 2017 5:15:37 PM",
+      "dateFinished": "Jul 13, 2017 5:15:52 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "Jul 13, 2017 4:17:15 PM",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1499962635240_-1129982546",
+      "id": "20170713-161715_35750102",
+      "dateCreated": "Jul 13, 2017 4:17:15 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Curso Spark/05 - RDDs numéricos",
+  "id": "2CDWBAG4F",
+  "angularObjects": {
+    "2CCY33GTB:shared_process": [],
+    "2CCQCYKJM:shared_process": [],
+    "2CD8VB8N5:shared_process": [],
+    "2CEZ3N4ZK:shared_process": [],
+    "2CCN184W1:shared_process": [],
+    "2CCTDCCB9:shared_process": [],
+    "2CBRCMJB7:shared_process": [],
+    "2CDTHYD1N:shared_process": [],
+    "2CD85MNWZ:shared_process": [],
+    "2CEM88R8V:shared_process": [],
+    "2CBSSQJJR:shared_process": [],
+    "2CBG9JDC9:shared_process": [],
+    "2CBJUH5Z5:shared_process": [],
+    "2CET3TKHW:shared_process": [],
+    "2CF1VUR2D:shared_process": [],
+    "2CCZDD8PX:shared_process": [],
+    "2CESEPECG:shared_process": [],
+    "2CCZGPF6E:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

@@ -1,0 +1,230 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n## Spark Streaming\n\n-   Procesamiento escalable, *high-throughput* y tolerante a fallos de flujos de datos\n\n\u003cimg src\u003d\"http://localhost:8085/figs/streaming-flow.png\" alt\u003d\"Flujo de Spark Streaming\" style\u003d\"width: 800px;\"/\u003e\n\n-   Entrada desde muchas fuentes: Kafka, Flume, Twitter, ZeroMQ, Kinesis o sockets TCP\n\n### Arquitectura de Spark Streaming\n\nAbstracción principal: DStream (`discretized stream`).\n\n-   Representa un flujo continuo de datos\n\n![dstreams](http://localhost:8085/figs/dstreams.png)\n\nArquitectura *micro-batch*\n\n-   Los datos recibidos se agrupan en batches\n-   Los batches se crean a intervalos regulares (batch interval)\n-   Cada batch forma un RDD, que es procesado por Spark\n-   Adicionalmente: transformaciones con estado mediante\n    -   Operaciones con ventanas\n    -   Tracking del estado por cada clave\n\nPágina de Spark Streaming: \u003chttps://spark.apache.org/streaming/\u003e\nDocumentación principal (de la última versión): \u003chttps://spark.apache.org/docs/latest/streaming-programming-guide.html\u003e",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 12:04:19 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eSpark Streaming\u003c/h2\u003e\n\u003cul\u003e\n  \u003cli\u003eProcesamiento escalable, \u003cem\u003ehigh-throughput\u003c/em\u003e y tolerante a fallos de flujos de datos\u003c/li\u003e\n\u003c/ul\u003e\n\u003cimg src\u003d\"http://localhost:8085/figs/streaming-flow.png\" alt\u003d\"Flujo de Spark Streaming\" style\u003d\"width: 800px;\"/\u003e\n\u003cul\u003e\n  \u003cli\u003eEntrada desde muchas fuentes: Kafka, Flume, Twitter, ZeroMQ, Kinesis o sockets TCP\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3\u003eArquitectura de Spark Streaming\u003c/h3\u003e\n\u003cp\u003eAbstracción principal: DStream (\u003ccode\u003ediscretized stream\u003c/code\u003e).\u003c/p\u003e\n\u003cul\u003e\n  \u003cli\u003eRepresenta un flujo continuo de datos\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e\u003cimg src\u003d\"http://localhost:8085/figs/dstreams.png\" alt\u003d\"dstreams\" /\u003e\u003c/p\u003e\n\u003cp\u003eArquitectura \u003cem\u003emicro-batch\u003c/em\u003e\u003c/p\u003e\n\u003cul\u003e\n  \u003cli\u003eLos datos recibidos se agrupan en batches\u003c/li\u003e\n  \u003cli\u003eLos batches se crean a intervalos regulares (batch interval)\u003c/li\u003e\n  \u003cli\u003eCada batch forma un RDD, que es procesado por Spark\u003c/li\u003e\n  \u003cli\u003eAdicionalmente: transformaciones con estado mediante\n    \u003cul\u003e\n      \u003cli\u003eOperaciones con ventanas\u003c/li\u003e\n      \u003cli\u003eTracking del estado por cada clave\u003c/li\u003e\n    \u003c/ul\u003e\n  \u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003ePágina de Spark Streaming: \u003ca href\u003d\"https://spark.apache.org/streaming/\"\u003ehttps://spark.apache.org/streaming/\u003c/a\u003e\u003cbr/\u003eDocumentación principal (de la última versión): \u003ca href\u003d\"https://spark.apache.org/docs/latest/streaming-programming-guide.html\"\u003ehttps://spark.apache.org/docs/latest/streaming-programming-guide.html\u003c/a\u003e\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1490983448483_2079948476",
+      "id": "20170331-180408_986053486",
+      "dateCreated": "Mar 31, 2017 6:04:08 PM",
+      "dateStarted": "Jul 27, 2017 12:04:15 PM",
+      "dateFinished": "Jul 27, 2017 12:04:15 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Spark Streaming: ejemplo de WordCount en red y sin estado\n\nPara ejecutar el ejemplo:\n\n   1. Ve al terminal desde el que iniciaste la máquina virtual con `vagrant up` y ejecuta la orden `vagrant ssh`\n   2. Una vez en el terminal de la máquina virtual, usa netcat como un servidor en el puerto 9999\n\n    `$ nc -lk 9999`\n\n   2. Ejecuta el código PySpark que viene a continuación \n\n   3. Escribe líneas en el terminal del netcat, que serán recogidas y procesadas por el script\n    - Escribe palabras repetidas, para comprobar que las cuenta bien",
+      "user": "anonymous",
+      "dateUpdated": "Jul 28, 2017 3:21:57 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eSpark Streaming: ejemplo de WordCount en red y sin estado\u003c/h3\u003e\n\u003cp\u003ePara ejecutar el ejemplo:\u003c/p\u003e\n\u003col\u003e\n  \u003cli\u003eVe al terminal desde el que iniciaste la máquina virtual con \u003ccode\u003evagrant up\u003c/code\u003e y ejecuta la orden \u003ccode\u003evagrant ssh\u003c/code\u003e\u003c/li\u003e\n  \u003cli\u003eUna vez en el terminal de la máquina virtual, usa netcat como un servidor en el puerto 9999\n    \u003cp\u003e\u003ccode\u003e$ nc -lk 9999\u003c/code\u003e\u003c/p\u003e\n  \u003c/li\u003e\n  \u003cli\u003e\n  \u003cp\u003eEjecuta el código PySpark que viene a continuación \u003c/p\u003e\u003c/li\u003e\n  \u003cli\u003e\n    \u003cp\u003eEscribe líneas en el terminal del netcat, que serán recogidas y procesadas por el script\u003c/p\u003e\n    \u003cul\u003e\n      \u003cli\u003eEscribe palabras repetidas, para comprobar que las cuenta bien\u003c/li\u003e\n    \u003c/ul\u003e\n  \u003c/li\u003e\n\u003c/ol\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501083085547_-1640927807",
+      "id": "20170726-153125_653257795",
+      "dateCreated": "Jul 26, 2017 3:31:25 PM",
+      "dateStarted": "Jul 27, 2017 11:57:31 AM",
+      "dateFinished": "Jul 27, 2017 11:57:31 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nfrom pyspark.streaming import StreamingContext\nfrom operator import add\n\nsc.setLogLevel(\"WARN\")\n\n# Contexto Streaming con un batch interval de 5 s\nssc \u003d StreamingContext(sc, 5)\n\n# DStream que conecta a localhost:9999\nlines \u003d ssc.socketTextStream(\"localhost\", 9999)\n\n# Ejecuta un WordCount\ncounts \u003d lines.flatMap(lambda line: line.split(\" \"))\\\n              .map(lambda word: (word, 1))\\\n              .reduceByKey(add)\n              \ncounts.pprint()\n\nssc.start() # Inicia la computacion\nssc.awaitTerminationOrTimeout(60) # Espera a que termine (acaba en 60 segundos)",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 12:27:11 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "-------------------------------------------\nTime: 2017-07-27 12:27:40\n-------------------------------------------\n\n-------------------------------------------\nTime: 2017-07-27 12:27:45\n-------------------------------------------\n\n-------------------------------------------\nTime: 2017-07-27 12:27:50\n-------------------------------------------\n\n-------------------------------------------\nTime: 2017-07-27 12:27:55\n-------------------------------------------\n\n-------------------------------------------\nTime: 2017-07-27 12:28:00\n-------------------------------------------\n\n-------------------------------------------\nTime: 2017-07-27 12:28:05\n-------------------------------------------\n\n-------------------------------------------\nTime: 2017-07-27 12:28:10\n-------------------------------------------\n\n-------------------------------------------\nTime: 2017-07-27 12:28:15\n-------------------------------------------\n\n-------------------------------------------\nTime: 2017-07-27 12:28:20\n-------------------------------------------\n\n-------------------------------------------\nTime: 2017-07-27 12:28:25\n-------------------------------------------\n\n-------------------------------------------\nTime: 2017-07-27 12:28:30\n-------------------------------------------\n\n-------------------------------------------\nTime: 2017-07-27 12:28:35\n-------------------------------------------\n\nFalse\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501072730333_-342123010",
+      "id": "20170726-123850_403078264",
+      "dateCreated": "Jul 26, 2017 12:38:50 PM",
+      "dateStarted": "Jul 27, 2017 12:27:11 PM",
+      "dateFinished": "Jul 27, 2017 12:28:37 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Spark Streaming: ejemplo de WordCount en red con estado\n\nRepite los pasos anteriores, ejecutando el siguiente código\n\n - Comprueba que el número de palabras se acumula entre accesos",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 11:59:15 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eSpark Streaming: ejemplo de WordCount en red con estado\u003c/h3\u003e\n\u003cp\u003eRepite los pasos anteriores, ejecutando el siguiente código\u003c/p\u003e\n\u003cul\u003e\n  \u003cli\u003eComprueba que el número de palabras se acumula entre accesos\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501072978540_1080479208",
+      "id": "20170726-124258_1594244715",
+      "dateCreated": "Jul 26, 2017 12:42:58 PM",
+      "dateStarted": "Jul 27, 2017 11:59:13 AM",
+      "dateFinished": "Jul 27, 2017 11:59:13 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nfrom pyspark.streaming import StreamingContext\nfrom operator import add\n\nsc.setLogLevel(\"WARN\")\n\n# Contexto Streaming con un batch interval de 5 s\nssc \u003d StreamingContext(sc, 5)\n\n# DStream que conecta a localhost:9999\nlines \u003d ssc.socketTextStream(\"localhost\", 9999)\n\nssc.checkpoint(\"/tmp/cpdir\") # Activa checkpoint\n\ndef updateFunc(new_values, last_sum):\n    return sum(new_values) + (last_sum or 0)\n\ncounts \u003d lines.flatMap(lambda line: line.split(\" \"))\\\n              .map(lambda word: (word, 1))\\\n              .updateStateByKey(updateFunc)\n\ncounts.pprint()\n\nssc.start() # Inicia la computacion\nssc.awaitTerminationOrTimeout(60) # Espera a que termine (acaba en 60 segundos)",
+      "user": "anonymous",
+      "dateUpdated": "Jul 27, 2017 12:38:23 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "-------------------------------------------\nTime: 2017-07-27 12:39:10\n-------------------------------------------\n\n-------------------------------------------\nTime: 2017-07-27 12:39:15\n-------------------------------------------\n\n-------------------------------------------\nTime: 2017-07-27 12:39:20\n-------------------------------------------\n\n-------------------------------------------\nTime: 2017-07-27 12:39:25\n-------------------------------------------\n(u\u0027dos\u0027, 4)\n(u\u0027tres\u0027, 6)\n(u\u0027uno\u0027, 2)\n\n-------------------------------------------\nTime: 2017-07-27 12:39:30\n-------------------------------------------\n(u\u0027dos\u0027, 4)\n(u\u0027tres\u0027, 6)\n(u\u0027uno\u0027, 2)\n\n-------------------------------------------\nTime: 2017-07-27 12:39:35\n-------------------------------------------\n(u\u0027dos\u0027, 4)\n(u\u0027tres\u0027, 6)\n(u\u0027uno\u0027, 2)\n\n-------------------------------------------\nTime: 2017-07-27 12:39:40\n-------------------------------------------\n(u\u0027dos\u0027, 6)\n(u\u0027tres\u0027, 9)\n(u\u0027uno\u0027, 3)\n\n-------------------------------------------\nTime: 2017-07-27 12:39:45\n-------------------------------------------\n(u\u0027dos\u0027, 6)\n(u\u0027tres\u0027, 9)\n(u\u0027uno\u0027, 3)\n\n-------------------------------------------\nTime: 2017-07-27 12:39:50\n-------------------------------------------\n(u\u0027dos\u0027, 6)\n(u\u0027tres\u0027, 9)\n(u\u0027uno\u0027, 3)\n\n-------------------------------------------\nTime: 2017-07-27 12:39:55\n-------------------------------------------\n(u\u0027dos\u0027, 6)\n(u\u0027tres\u0027, 9)\n(u\u0027uno\u0027, 3)\n\n-------------------------------------------\nTime: 2017-07-27 12:40:00\n-------------------------------------------\n(u\u0027dos\u0027, 6)\n(u\u0027tres\u0027, 9)\n(u\u0027uno\u0027, 3)\n\nFalse\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1501083630334_-1924521684",
+      "id": "20170726-154030_861974889",
+      "dateCreated": "Jul 26, 2017 3:40:30 PM",
+      "dateStarted": "Jul 27, 2017 12:38:23 PM",
+      "dateFinished": "Jul 27, 2017 12:40:05 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "Jul 26, 2017 3:42:18 PM",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1501083738332_681346511",
+      "id": "20170726-154218_2042879683",
+      "dateCreated": "Jul 26, 2017 3:42:18 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Curso Spark/11 - Spark Streaming",
+  "id": "2CCMSADKM",
+  "angularObjects": {
+    "2CCY33GTB:shared_process": [],
+    "2CCQCYKJM:shared_process": [],
+    "2CD8VB8N5:shared_process": [],
+    "2CEZ3N4ZK:shared_process": [],
+    "2CCN184W1:shared_process": [],
+    "2CCTDCCB9:shared_process": [],
+    "2CBRCMJB7:shared_process": [],
+    "2CDTHYD1N:shared_process": [],
+    "2CD85MNWZ:shared_process": [],
+    "2CEM88R8V:shared_process": [],
+    "2CBSSQJJR:shared_process": [],
+    "2CBG9JDC9:shared_process": [],
+    "2CBJUH5Z5:shared_process": [],
+    "2CET3TKHW:shared_process": [],
+    "2CF1VUR2D:shared_process": [],
+    "2CCZDD8PX:shared_process": [],
+    "2CESEPECG:shared_process": [],
+    "2CCZGPF6E:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

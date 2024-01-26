@@ -1,0 +1,436 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n### Trabajos, etapas y tareas\n-   Un programa Spark define un DAG conectando los diferentes RDDs\n    -   Las transformaciones crean RDDs hijos a partir de RDDs padres\n\n-   Las acciones traducen el DAG en un plan de ejecución\n    -   El driver envía un *trabajo* (job) para computar todos los RDDs implicados en la acción\n    -   El job se descompone en una o más *etapas* (stages)\n    -   Cada etapa está asociada a uno o más RDDs del DAG\n    -   Las etapas se procesan en orden, lanzándose *tareas* (tasks) individuales que computan segmentos de los RDDs\n\n-   Pipelining: varios RDDs se pueden computan en una misma etapa si se verifica que:\n    -   Los RDDs se pueden obtener de sus padres sin movimiento de datos (p.e. *map*), o bien\n    -   si alguno de los RDDs se ha *cacheado* en memoria o disco\n\n-   En el [interfaz web de Spark](http://localhost:4040 \"PySpark en localhost\") se muestran información sobre las etapas y tareas (más info: método `toDebugString()` de los RDDs)",
+      "user": "anonymous",
+      "dateUpdated": "Jul 23, 2017 4:27:09 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eTrabajos, etapas y tareas\u003c/h3\u003e\n\u003cul\u003e\n  \u003cli\u003e\n    \u003cp\u003eUn programa Spark define un DAG conectando los diferentes RDDs\u003c/p\u003e\n    \u003cul\u003e\n      \u003cli\u003eLas transformaciones crean RDDs hijos a partir de RDDs padres\u003c/li\u003e\n    \u003c/ul\u003e\n  \u003c/li\u003e\n  \u003cli\u003e\n    \u003cp\u003eLas acciones traducen el DAG en un plan de ejecución\u003c/p\u003e\n    \u003cul\u003e\n      \u003cli\u003eEl driver envía un \u003cem\u003etrabajo\u003c/em\u003e (job) para computar todos los RDDs implicados en la acción\u003c/li\u003e\n      \u003cli\u003eEl job se descompone en una o más \u003cem\u003eetapas\u003c/em\u003e (stages)\u003c/li\u003e\n      \u003cli\u003eCada etapa está asociada a uno o más RDDs del DAG\u003c/li\u003e\n      \u003cli\u003eLas etapas se procesan en orden, lanzándose \u003cem\u003etareas\u003c/em\u003e (tasks) individuales que computan segmentos de los RDDs\u003c/li\u003e\n    \u003c/ul\u003e\n  \u003c/li\u003e\n  \u003cli\u003e\n    \u003cp\u003ePipelining: varios RDDs se pueden computan en una misma etapa si se verifica que:\u003c/p\u003e\n    \u003cul\u003e\n      \u003cli\u003eLos RDDs se pueden obtener de sus padres sin movimiento de datos (p.e. \u003cem\u003emap\u003c/em\u003e), o bien\u003c/li\u003e\n      \u003cli\u003esi alguno de los RDDs se ha \u003cem\u003ecacheado\u003c/em\u003e en memoria o disco\u003c/li\u003e\n    \u003c/ul\u003e\n  \u003c/li\u003e\n  \u003cli\u003e\n  \u003cp\u003eEn el \u003ca href\u003d\"http://localhost:4040\" title\u003d\"PySpark en localhost\"\u003einterfaz web de Spark\u003c/a\u003e se muestran información sobre las etapas y tareas (más info: método \u003ccode\u003etoDebugString()\u003c/code\u003e de los RDDs)\u003c/p\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1500672380130_-435058508",
+      "id": "20170721-212620_1632692642",
+      "dateCreated": "Jul 21, 2017 9:26:20 PM",
+      "dateStarted": "Jul 23, 2017 4:18:44 PM",
+      "dateFinished": "Jul 23, 2017 4:18:44 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n// A partir de los ficheros secuencia de apat63_99-seq obtener para cada país y año el número de patentes\nimport org.apache.hadoop.io.Text\n\nval prdd \u003d sc.sequenceFile(\"../datos/apat63_99-seq\", classOf[Text], classOf[Text])\nprintln(\"Número de particiones del RDD\"+ prdd.getNumPartitions)\n\n//Cada registro de apar63_99-seq tiene un par (país, patente,año)\nval prdd2 \u003d prdd.map(p \u003d\u003e (p._1+\"-\"+p._2.toString().split(\",\")(1), 1) )\n                .reduceByKey(_+_)\n                \nval s \u003d prdd2.take(10)\n\nprintln(\"\\nInformación de depurado:\")\nprintln(prdd2.toDebugString)",
+      "user": "anonymous",
+      "dateUpdated": "Jul 28, 2017 3:16:13 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1500826770186_872731361",
+      "id": "20170723-161930_1514654774",
+      "dateCreated": "Jul 23, 2017 4:19:30 PM",
+      "dateStarted": "Jul 23, 2017 4:25:50 PM",
+      "dateFinished": "Jul 23, 2017 4:25:54 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Acumuladores\n\nPermiten agregar valores desde los *worker nodes*, que se pasan al *driver*\n\n-   Útiles para contar eventos\n\n-   Solo el driver puede acceder a su valor\n\n-   Acumuladores usados en transformaciones de RDDs pueden ser incorrectos\n\n    -   Si el RDD se recalcula, el acumulador puede actualizarse\n\n    -   En acciones, este problema no ocurre\n\n-   Por defecto, los acumuladores son enteros o flotantes\n    - Es posible crear “acumuladores a medida” usando [`AccumulatorParam`](https://spark.apache.org/docs/1.5.2/api/python/pyspark.html#pyspark.AccumulatorParam)",
+      "user": "anonymous",
+      "dateUpdated": "Jul 23, 2017 4:52:04 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eAcumuladores\u003c/h3\u003e\n\u003cp\u003ePermiten agregar valores desde los \u003cem\u003eworker nodes\u003c/em\u003e, que se pasan al \u003cem\u003edriver\u003c/em\u003e\u003c/p\u003e\n\u003cul\u003e\n  \u003cli\u003e\n  \u003cp\u003eÚtiles para contar eventos\u003c/p\u003e\u003c/li\u003e\n  \u003cli\u003e\n  \u003cp\u003eSolo el driver puede acceder a su valor\u003c/p\u003e\u003c/li\u003e\n  \u003cli\u003e\n    \u003cp\u003eAcumuladores usados en transformaciones de RDDs pueden ser incorrectos\u003c/p\u003e\n    \u003cul\u003e\n      \u003cli\u003e\n      \u003cp\u003eSi el RDD se recalcula, el acumulador puede actualizarse\u003c/p\u003e\u003c/li\u003e\n      \u003cli\u003e\n      \u003cp\u003eEn acciones, este problema no ocurre\u003c/p\u003e\u003c/li\u003e\n    \u003c/ul\u003e\n  \u003c/li\u003e\n  \u003cli\u003e\n    \u003cp\u003ePor defecto, los acumuladores son enteros o flotantes\u003c/p\u003e\n    \u003cul\u003e\n      \u003cli\u003eEs posible crear “acumuladores a medida” usando \u003ca href\u003d\"https://spark.apache.org/docs/1.5.2/api/python/pyspark.html#pyspark.AccumulatorParam\"\u003e\u003ccode\u003eAccumulatorParam\u003c/code\u003e\u003c/a\u003e\u003c/li\u003e\n    \u003c/ul\u003e\n  \u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1490983257937_-1505385318",
+      "id": "20170331-180057_1836578886",
+      "dateCreated": "Mar 31, 2017 6:00:57 PM",
+      "dateStarted": "Jul 21, 2017 9:31:42 PM",
+      "dateFinished": "Jul 21, 2017 9:31:42 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nfrom numpy.random import randint\n\nnpares \u003d sc.accumulator(0)\n\ndef esPar(n):\n    global npares\n    if n%2 \u003d\u003d 0:\n        npares +\u003d 1\n\nrdd \u003d sc.parallelize(randint(100, size\u003d10000))\nrdd.foreach(esPar)\n\nprint(\"N pares: %d\" % npares.value)",
+      "user": "anonymous",
+      "dateUpdated": "Jul 22, 2017 3:59:18 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1500661851173_490126102",
+      "id": "20170721-183051_1152536440",
+      "dateCreated": "Jul 21, 2017 6:30:51 PM",
+      "dateStarted": "Jul 22, 2017 3:59:19 PM",
+      "dateFinished": "Jul 22, 2017 3:59:25 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Variables de broadcast\n\n-   Por defecto, todas las variables compartidas (no RDDs) son enviadas a todos los ejecutores\n\n    -   Se reenvían en cada operación en la que aparezcan\n\n-   Variables de broadcast: permiten enviar de forma eficiente variables de solo lectura a los workers\n\n    -   Se envían solo una vez\n",
+      "user": "anonymous",
+      "dateUpdated": "Jul 28, 2017 3:15:35 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eVariables de broadcast\u003c/h3\u003e\n\u003cul\u003e\n  \u003cli\u003e\n    \u003cp\u003ePor defecto, todas las variables compartidas (no RDDs) son enviadas a todos los ejecutores\u003c/p\u003e\n    \u003cul\u003e\n      \u003cli\u003e\n      \u003cp\u003eSe reenvían en cada operación en la que aparezcan\u003c/p\u003e\u003c/li\u003e\n    \u003c/ul\u003e\n  \u003c/li\u003e\n  \u003cli\u003e\n    \u003cp\u003eVariables de broadcast: permiten enviar de forma eficiente variables de solo lectura a los workers\u003c/p\u003e\n    \u003cul\u003e\n      \u003cli\u003e\n      \u003cp\u003eSe envían solo una vez\u003c/p\u003e\u003c/li\u003e\n    \u003c/ul\u003e\n  \u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1500661913383_270327211",
+      "id": "20170721-183153_571912860",
+      "dateCreated": "Jul 21, 2017 6:31:53 PM",
+      "dateStarted": "Jul 21, 2017 6:36:56 PM",
+      "dateFinished": "Jul 21, 2017 6:36:56 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nfrom operator import add\n\n# dicc es una variable de broadcast\ndicc\u003dsc.broadcast({\"a\":\"alpha\",\"b\":\"beta\",\"c\":\"gamma\"})\n\nrdd\u003dsc.parallelize([(\"a\", 1),(\"b\", 3),(\"a\", -4),(\"c\", 0)])\nreduced_rdd \u003d rdd.reduceByKey(add).map(lambda (x,y): (dicc.value[x],y))\n\nprint(reduced_rdd.collect())\n",
+      "user": "anonymous",
+      "dateUpdated": "Jul 22, 2017 4:01:47 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1500662216516_-1939677573",
+      "id": "20170721-183656_606745752",
+      "dateCreated": "Jul 21, 2017 6:36:56 PM",
+      "dateStarted": "Jul 22, 2017 4:01:47 PM",
+      "dateFinished": "Jul 22, 2017 4:01:48 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Trabajando a nivel de partición\n\nUna operación map se hace para cada elemento de un RDD\n\n-   Puede implicar operaciones redundantes (p.e. abrir una conexión a una BD)\n\n-   Puede ser poco eficiente\n\nSe pueden hacer `map` y `foreach` una vez por partición:\n\n-   Métodos `mapPartitions()`, `mapPartitionsWithIndex()` y `foreachPartition()`\n",
+      "user": "anonymous",
+      "dateUpdated": "Jul 23, 2017 4:51:47 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eTrabajando a nivel de partición\u003c/h3\u003e\n\u003cp\u003eUna operación map se hace para cada elemento de un RDD\u003c/p\u003e\n\u003cul\u003e\n  \u003cli\u003e\n  \u003cp\u003ePuede implicar operaciones redundantes (p.e. abrir una conexión a una BD)\u003c/p\u003e\u003c/li\u003e\n  \u003cli\u003e\n  \u003cp\u003ePuede ser poco eficiente\u003c/p\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eSe pueden hacer \u003ccode\u003emap\u003c/code\u003e y \u003ccode\u003eforeach\u003c/code\u003e una vez por partición:\u003c/p\u003e\n\u003cul\u003e\n  \u003cli\u003eMétodos \u003ccode\u003emapPartitions()\u003c/code\u003e, \u003ccode\u003emapPartitionsWithIndex()\u003c/code\u003e y \u003ccode\u003eforeachPartition()\u003c/code\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1500662323600_386483629",
+      "id": "20170721-183843_615906180",
+      "dateCreated": "Jul 21, 2017 6:38:43 PM",
+      "dateStarted": "Jul 21, 2017 6:39:51 PM",
+      "dateFinished": "Jul 21, 2017 6:39:51 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nnums \u003d sc.parallelize([1,2,3,4,5,6,7,8,9], 2)\nprint(nums.glom().collect())\n\ndef sumayCuenta(iterador):\n    sumaCuenta \u003d [0,0]\n    for i in iterador:\n        sumaCuenta[0] +\u003d i\n        sumaCuenta[1] +\u003d 1\n    return sumaCuenta\n    \nprint(nums.mapPartitions(sumayCuenta).glom().collect())",
+      "user": "anonymous",
+      "dateUpdated": "Jul 22, 2017 4:05:05 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1500662381693_-1895184618",
+      "id": "20170721-183941_197164903",
+      "dateCreated": "Jul 21, 2017 6:39:41 PM",
+      "dateStarted": "Jul 22, 2017 4:05:05 PM",
+      "dateFinished": "Jul 22, 2017 4:05:05 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\ndef sumayCuentaIndex(index, it):\n    return \"Particion \"+str(index), sumayCuenta(it)\n\nprint(nums.mapPartitionsWithIndex(sumayCuentaIndex).glom().collect())",
+      "user": "anonymous",
+      "dateUpdated": "Jul 22, 2017 4:08:56 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1500662454293_-872983411",
+      "id": "20170721-184054_936692370",
+      "dateCreated": "Jul 21, 2017 6:40:54 PM",
+      "dateStarted": "Jul 22, 2017 4:08:56 PM",
+      "dateFinished": "Jul 22, 2017 4:08:57 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nimport os\nimport tempfile\n\ndef f(iterator):\n    tempfich, _ \u003d tempfile.mkstemp(dir\u003dtempdir)\n    for x in iterator: \n        os.write(tempfich, str(x)+\u0027\\t\u0027)\n    os.close(tempfich)\n        \ntempdir \u003d \"/tmp/foreachPartition\"\n\nif not os.path.exists(tempdir):\n    os.mkdir(tempdir)\n    nums.foreachPartition(f)",
+      "user": "anonymous",
+      "dateUpdated": "Jul 22, 2017 4:12:46 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1500665472472_186321659",
+      "id": "20170721-193112_1735244858",
+      "dateCreated": "Jul 21, 2017 7:31:12 PM",
+      "dateStarted": "Jul 22, 2017 4:12:46 PM",
+      "dateFinished": "Jul 22, 2017 4:12:47 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\nTEMP\u003d/tmp/foreachPartition\necho \"Ficheros creados\"\nls -l $TEMP\necho\necho \"Contenido de los ficheros\"\nfor f in $TEMP/*;do cat $f; echo; echo \"\u003d\u003d\u003d\u003d\"; done\nrm -rf $TEMP",
+      "user": "anonymous",
+      "dateUpdated": "Jul 22, 2017 4:12:57 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/sh"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1500665960709_1638253449",
+      "id": "20170721-193920_1402264741",
+      "dateCreated": "Jul 21, 2017 7:39:20 PM",
+      "dateStarted": "Jul 22, 2017 4:12:57 PM",
+      "dateFinished": "Jul 22, 2017 4:12:57 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Tarea\n\nDesarrollar un script PySpark, que, a partir de los ficheros secuencia en `apat63_99-seq` cree  un RDD clave valor, en el cual la clave es un país y el valor una lista de tuplas, en la que cada tupla esté formada por un año y el número de patentes de ese país en ese año. Además, debeis utilizar el contenido del fichero `country_codes.txt` (localizado en `../datos/country_codes.txt`) como una variable de broadcast y substituir el código del país por su nombre. Por último, el RDD creado debe estar ordenado por el nombre del país y, para cada país, la lista de valores ordenados por año.\n\nRecordad que cada registro de `apat63_99-seq` tiene un par clave valor `(país  patente,año)`, siendo tanto la clave como el valor de tipo *org.apache.hadoop.io.Text*.\n",
+      "user": "anonymous",
+      "dateUpdated": "Jul 23, 2017 4:30:06 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eTarea\u003c/h3\u003e\n\u003cp\u003eDesarrollar un script PySpark, que, a partir de los ficheros secuencia en \u003ccode\u003eapat63_99-seq\u003c/code\u003e cree un RDD clave valor, en el cual la clave es un país y el valor una lista de tuplas, en la que cada tupla esté formada por un año y el número de patentes de ese país en ese año. Además, debeis utilizar el contenido del fichero \u003ccode\u003ecountry_codes.txt\u003c/code\u003e (localizado en \u003ccode\u003e../datos/country_codes.txt\u003c/code\u003e) como una variable de broadcast y substituir el código del país por su nombre. Por último, el RDD creado debe estar ordenado por el nombre del país y, para cada país, la lista de valores ordenados por año.\u003c/p\u003e\n\u003cp\u003eRecordad que cada registro de \u003ccode\u003eapat63_99-seq\u003c/code\u003e tiene un par clave valor \u003ccode\u003e(país  patente,año)\u003c/code\u003e, siendo tanto la clave como el valor de tipo \u003cem\u003eorg.apache.hadoop.io.Text\u003c/em\u003e.\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1500666213073_1663614584",
+      "id": "20170721-194333_894569065",
+      "dateCreated": "Jul 21, 2017 7:43:33 PM",
+      "dateStarted": "Jul 23, 2017 4:30:04 PM",
+      "dateFinished": "Jul 23, 2017 4:30:04 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "Jul 23, 2017 12:03:33 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1500810816149_-1640892414",
+      "id": "20170723-115336_1788563352",
+      "dateCreated": "Jul 23, 2017 11:53:36 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Curso Spark/09 - Aspectos avanzados",
+  "id": "2CDUF4XFK",
+  "angularObjects": {
+    "2CCY33GTB:shared_process": [],
+    "2CCQCYKJM:shared_process": [],
+    "2CD8VB8N5:shared_process": [],
+    "2CEZ3N4ZK:shared_process": [],
+    "2CCN184W1:shared_process": [],
+    "2CCTDCCB9:shared_process": [],
+    "2CBRCMJB7:shared_process": [],
+    "2CDTHYD1N:shared_process": [],
+    "2CD85MNWZ:shared_process": [],
+    "2CEM88R8V:shared_process": [],
+    "2CBSSQJJR:shared_process": [],
+    "2CBG9JDC9:shared_process": [],
+    "2CBJUH5Z5:shared_process": [],
+    "2CET3TKHW:shared_process": [],
+    "2CF1VUR2D:shared_process": [],
+    "2CCZDD8PX:shared_process": [],
+    "2CESEPECG:shared_process": [],
+    "2CCZGPF6E:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

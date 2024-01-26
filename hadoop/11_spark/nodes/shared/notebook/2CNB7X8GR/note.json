@@ -1,0 +1,1477 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n# RDDs con pares clave/valor (aka *Pair RDDs*)\n\n-   Tipos de datos muy usados en Big Data (MapReduce)\n\n-   Spark dispone de operaciones especiales para su manejo",
+      "user": "anonymous",
+      "dateUpdated": "Jul 13, 2017 11:54:46 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eRDDs con pares clave/valor (aka \u003cem\u003ePair RDDs\u003c/em\u003e)\u003c/h1\u003e\n\u003cul\u003e\n  \u003cli\u003e\n  \u003cp\u003eTipos de datos muy usados en Big Data (MapReduce)\u003c/p\u003e\u003c/li\u003e\n  \u003cli\u003e\n  \u003cp\u003eSpark dispone de operaciones especiales para su manejo\u003c/p\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1499539001715_963360055",
+      "id": "20170708-183641_1609794276",
+      "dateCreated": "Jul 8, 2017 6:36:41 PM",
+      "dateStarted": "Jul 13, 2017 11:54:32 AM",
+      "dateFinished": "Jul 13, 2017 11:54:32 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Creación de *Pair RDDs*\nLos RDDs clave/valor pueden crearse a partir de una lista de tuplas, a partir de otro RDD o mediante un zip de dos RDDs.",
+      "user": "anonymous",
+      "dateUpdated": "Jul 13, 2017 11:54:43 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eCreación de \u003cem\u003ePair RDDs\u003c/em\u003e\u003c/h3\u003e\n\u003cp\u003eLos RDDs clave/valor pueden crearse a partir de una lista de tuplas, a partir de otro RDD o mediante un zip de dos RDDs.\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1499539111934_2071021490",
+      "id": "20170708-183831_1559169513",
+      "dateCreated": "Jul 8, 2017 6:38:31 PM",
+      "dateStarted": "Jul 13, 2017 11:54:41 AM",
+      "dateFinished": "Jul 13, 2017 11:54:41 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n-   A partir de una lista de tuplas",
+      "user": "anonymous",
+      "dateUpdated": "Jul 8, 2017 7:38:44 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cul\u003e\n  \u003cli\u003eA partir de una lista de tuplas\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1499539122534_-2084819945",
+      "id": "20170708-183842_742913676",
+      "dateCreated": "Jul 8, 2017 6:38:42 PM",
+      "dateStarted": "Jul 8, 2017 6:40:01 PM",
+      "dateFinished": "Jul 8, 2017 6:40:01 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nprdd \u003d sc.parallelize([(\u0027a\u0027,2), (\u0027b\u0027,5), (\u0027a\u0027,3)])\nprint(prdd.collect())\n\nprdd \u003d sc.parallelize(zip([\u0027a\u0027, \u0027b\u0027, \u0027c\u0027], range(3)))\nprint(prdd.collect())",
+      "user": "anonymous",
+      "dateUpdated": "Jul 9, 2017 11:38:40 AM",
+      "config": {
+        "colWidth": 6.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1499539201566_151017733",
+      "id": "20170708-184001_776040480",
+      "dateCreated": "Jul 8, 2017 6:40:01 PM",
+      "dateStarted": "Jul 9, 2017 11:38:41 AM",
+      "dateFinished": "Jul 9, 2017 11:38:41 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\nval prdd \u003d sc.parallelize(List((\u0027a\u0027,2), (\u0027b\u0027,5), (\u0027a\u0027,3)))\nprdd.collect()\n\nval prdd \u003d sc.parallelize(List(\u0027a\u0027, \u0027b\u0027, \u0027c\u0027) zip (1 to 3).toList)\nprdd.collect()",
+      "user": "anonymous",
+      "dateUpdated": "Jul 9, 2017 11:25:04 AM",
+      "config": {
+        "colWidth": 6.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1499539256199_-1796688468",
+      "id": "20170708-184056_21645820",
+      "dateCreated": "Jul 8, 2017 6:40:56 PM",
+      "dateStarted": "Jul 9, 2017 11:25:05 AM",
+      "dateFinished": "Jul 9, 2017 11:25:33 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n-   A partir de otro RDD",
+      "user": "anonymous",
+      "dateUpdated": "Jul 8, 2017 7:38:47 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cul\u003e\n  \u003cli\u003eA partir de otro RDD\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1499539320187_876855018",
+      "id": "20170708-184200_538389667",
+      "dateCreated": "Jul 8, 2017 6:42:00 PM",
+      "dateStarted": "Jul 8, 2017 6:58:40 PM",
+      "dateFinished": "Jul 8, 2017 6:58:40 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# Ejemplo usando un fichero\n# Para cada línea ontenemos una tupla, siendo el primer elemento\n# la primera palabra de la línes, y el segundo la línea completa\nlinesrdd \u003d sc.textFile(\"../datos/quijote.txt\", use_unicode\u003dFalse)\nprdd \u003d linesrdd.map(lambda x: (x.split(\" \")[0], x))\n\nprint(\u0027Par (1ª palabra, línea): {0}\\n\u0027.format(prdd.takeSample(False, 1)))\n",
+      "user": "anonymous",
+      "dateUpdated": "Jul 9, 2017 11:41:54 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1499539830723_494133842",
+      "id": "20170708-185030_1311976050",
+      "dateCreated": "Jul 8, 2017 6:50:30 PM",
+      "dateStarted": "Jul 9, 2017 11:41:54 AM",
+      "dateFinished": "Jul 9, 2017 11:41:55 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# Usando keyBy(f): Crea tuplas de los elementos del RDD usando f para obtener la clave.\nnrdd \u003d sc.parallelize(xrange(2,5))\nprdd \u003d nrdd.keyBy(lambda x: x*x)\n\nprint(prdd.collect())",
+      "user": "anonymous",
+      "dateUpdated": "Jul 9, 2017 11:44:54 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1499539883195_1629051153",
+      "id": "20170708-185123_228837373",
+      "dateCreated": "Jul 8, 2017 6:51:23 PM",
+      "dateStarted": "Jul 9, 2017 11:44:54 AM",
+      "dateFinished": "Jul 9, 2017 11:44:55 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# zipWithIndex(): Zipea el RDD con los índices de sus elementos.\nrdd \u003d sc.parallelize([\u0027a\u0027, \u0027b\u0027, \u0027c\u0027, \u0027d\u0027, \u0027e\u0027, \u0027f\u0027, \u0027g\u0027, \u0027h\u0027], 3)\nprdd \u003d rdd.zipWithIndex()\nprint(rdd.glom().collect())\n\nprint(prdd.collect())\n\n# Este método dispara un Spark job cuando el RDD tiene más de una partición.",
+      "user": "anonymous",
+      "dateUpdated": "Jul 9, 2017 11:57:45 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1499540151612_1964904650",
+      "id": "20170708-185551_1592986113",
+      "dateCreated": "Jul 8, 2017 6:55:51 PM",
+      "dateStarted": "Jul 9, 2017 11:57:45 AM",
+      "dateFinished": "Jul 9, 2017 11:57:46 AM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# zipWithUniqueId(): Zipea el RDD con identificadores únicos (long) para cada elemento.\n# Los elementos en la partición k-ésima obtienen los ids k, n+k, 2*n+k,... siendo n \u003d nº de particiones\n# No dispara un trabajo Spark\nrdd \u003d sc.parallelize([\u0027a\u0027, \u0027b\u0027, \u0027c\u0027, \u0027d\u0027, \u0027e\u0027, \u0027f\u0027, \u0027g\u0027, \u0027h\u0027], 3)\nprint(\"Particionado del RDD: {0}\".format(rdd.glom().collect()))\nprdd \u003d rdd.zipWithUniqueId()\n\nprint(prdd.collect())",
+      "user": "anonymous",
+      "dateUpdated": "Jul 9, 2017 12:00:56 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1499540391576_-1274916409",
+      "id": "20170708-185951_183844766",
+      "dateCreated": "Jul 8, 2017 6:59:51 PM",
+      "dateStarted": "Jul 9, 2017 12:00:57 PM",
+      "dateFinished": "Jul 9, 2017 12:00:57 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n- Mediante un zip de dos RDDs\n    - Los RDDs deben tener el mismo número de particiones y el mismo número de elementos en cada partición",
+      "user": "anonymous",
+      "dateUpdated": "Jul 8, 2017 7:38:53 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cul\u003e\n  \u003cli\u003eMediante un zip de dos RDDs\n    \u003cul\u003e\n      \u003cli\u003eLos RDDs deben tener el mismo número de particiones y el mismo número de elementos en cada partición\u003c/li\u003e\n    \u003c/ul\u003e\n  \u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1499540461076_-301593637",
+      "id": "20170708-190101_1648829592",
+      "dateCreated": "Jul 8, 2017 7:01:01 PM",
+      "dateStarted": "Jul 8, 2017 7:01:42 PM",
+      "dateFinished": "Jul 8, 2017 7:01:42 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nrdd1 \u003d sc.parallelize(xrange(0, 5), 2)\nrdd2 \u003d sc.parallelize(range(1000, 1005), 2)\nprdd \u003d rdd1.zip(rdd2)\n\nprint(prdd.collect())",
+      "user": "anonymous",
+      "dateUpdated": "Jul 9, 2017 12:03:25 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1499540502289_253042422",
+      "id": "20170708-190142_1751232574",
+      "dateCreated": "Jul 8, 2017 7:01:42 PM",
+      "dateStarted": "Jul 9, 2017 12:03:25 PM",
+      "dateFinished": "Jul 9, 2017 12:03:26 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Transformaciones sobre un único RDD clave/valor\nSobre un único RDD clave/valor podemos efectuar transformaciones de agregación a nivel de clave y transformaciones que afectan a las claves o a los valores",
+      "user": "anonymous",
+      "dateUpdated": "Jul 9, 2017 5:01:51 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eTransformaciones sobre un único RDD clave/valor\u003c/h3\u003e\n\u003cp\u003eSobre un único RDD clave/valor podemos efectuar transformaciones de agregación a nivel de clave y transformaciones que afectan a las claves o a los valores\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1499540537900_370452133",
+      "id": "20170708-190217_1787358861",
+      "dateCreated": "Jul 8, 2017 7:02:17 PM",
+      "dateStarted": "Jul 9, 2017 5:01:48 PM",
+      "dateFinished": "Jul 9, 2017 5:01:48 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n#### Transformaciones de agregación",
+      "user": "anonymous",
+      "dateUpdated": "Jul 8, 2017 7:39:06 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch4\u003eTransformaciones de agregación\u003c/h4\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1499540651220_-1955584830",
+      "id": "20170708-190411_1670560456",
+      "dateCreated": "Jul 8, 2017 7:04:11 PM",
+      "dateStarted": "Jul 8, 2017 7:39:04 PM",
+      "dateFinished": "Jul 8, 2017 7:39:04 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n-   `reduceByKey(func)`/`foldByKey(func)`\n    -   Devuelven un RDD, agrupando los valores asociados a la misma clave mediante `func`\n    -   Similares a `reduce` y `fold` sobre RDDs simples",
+      "user": "anonymous",
+      "dateUpdated": "Jul 9, 2017 4:07:47 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cul\u003e\n  \u003cli\u003e\u003ccode\u003ereduceByKey(func)\u003c/code\u003e/\u003ccode\u003efoldByKey(func)\u003c/code\u003e\n    \u003cul\u003e\n      \u003cli\u003eDevuelven un RDD, agrupando los valores asociados a la misma clave mediante \u003ccode\u003efunc\u003c/code\u003e\u003c/li\u003e\n      \u003cli\u003eSimilares a \u003ccode\u003ereduce\u003c/code\u003e y \u003ccode\u003efold\u003c/code\u003e sobre RDDs simples\u003c/li\u003e\n    \u003c/ul\u003e\n  \u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1499540665503_-435411278",
+      "id": "20170708-190425_1242806742",
+      "dateCreated": "Jul 8, 2017 7:04:25 PM",
+      "dateStarted": "Jul 9, 2017 4:07:42 PM",
+      "dateFinished": "Jul 9, 2017 4:07:42 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nfrom operator import add\nprdd   \u003d sc.parallelize([(\u0027a\u0027, 2), (\u0027b\u0027, 5), (\u0027a\u0027, 8), (\u0027b\u0027, 6), (\u0027b\u0027, 2)]).cache()\nredrdd \u003d prdd.reduceByKey(add)\n\nprint(redrdd.collect())",
+      "user": "anonymous",
+      "dateUpdated": "Jul 9, 2017 5:31:31 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1499540721260_1083870184",
+      "id": "20170708-190521_817452515",
+      "dateCreated": "Jul 8, 2017 7:05:21 PM",
+      "dateStarted": "Jul 9, 2017 5:31:31 PM",
+      "dateFinished": "Jul 9, 2017 5:31:32 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n-   `groupByKey()` agrupa valores asociados a misma clave\n    - Operación muy costosa en comunicaciones\n    - Mejor usar operaciones de reducción\n",
+      "user": "anonymous",
+      "dateUpdated": "Jul 9, 2017 4:12:32 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cul\u003e\n  \u003cli\u003e\u003ccode\u003egroupByKey()\u003c/code\u003e agrupa valores asociados a misma clave\n    \u003cul\u003e\n      \u003cli\u003eOperación muy costosa en comunicaciones\u003c/li\u003e\n      \u003cli\u003eMejor usar operaciones de reducción\u003c/li\u003e\n    \u003c/ul\u003e\n  \u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1499540771769_-251380355",
+      "id": "20170708-190611_1823281727",
+      "dateCreated": "Jul 8, 2017 7:06:11 PM",
+      "dateStarted": "Jul 9, 2017 4:12:29 PM",
+      "dateFinished": "Jul 9, 2017 4:12:29 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\ngrouprdd \u003d prdd.groupByKey()\n\nprint(grouprdd.collect())\nprint\n\nlista \u003d [(k, list(v)) for k, v in grouprdd.collect()]\nprint(lista)",
+      "user": "anonymous",
+      "dateUpdated": "Jul 9, 2017 5:17:45 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1499540796688_-1347499323",
+      "id": "20170708-190636_136764461",
+      "dateCreated": "Jul 8, 2017 7:06:36 PM",
+      "dateStarted": "Jul 9, 2017 5:17:45 PM",
+      "dateFinished": "Jul 9, 2017 5:17:47 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n- `combineByKey(createCombiner(func1), mergeValue(func2), mergeCombiners(func3))`\n    - Método general para agregación por clave, similar a `aggregate`\n    - Especifica tres funciones:\n\n     1.  `createCombiner` al recorrer los elementos de cada partición, si nos encontramos una clave nueva se crea un acumulador y se inicializa con `func1`\n\n     2.  `mergeValue` mezcla los valores de cada clave en cada partición usando `func2`\n\n     3.  `mergeCombiners` mezcla los resultados de las diferentes particiones mediante `func3`\n\n- Los valores del RDD de salida pueden tener un tipo diferente al de los valores del RDD de entrada.",
+      "user": "anonymous",
+      "dateUpdated": "Jul 9, 2017 4:32:39 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cul\u003e\n  \u003cli\u003e\n    \u003cp\u003e\u003ccode\u003ecombineByKey(createCombiner(func1), mergeValue(func2), mergeCombiners(func3))\u003c/code\u003e\u003c/p\u003e\n    \u003cul\u003e\n      \u003cli\u003eMétodo general para agregación por clave, similar a \u003ccode\u003eaggregate\u003c/code\u003e\u003c/li\u003e\n      \u003cli\u003eEspecifica tres funciones:\u003c/li\u003e\n    \u003c/ul\u003e\n    \u003col\u003e\n      \u003cli\u003e\n      \u003cp\u003e\u003ccode\u003ecreateCombiner\u003c/code\u003e al recorrer los elementos de cada partición, si nos encontramos una clave nueva se crea un acumulador y se inicializa con \u003ccode\u003efunc1\u003c/code\u003e\u003c/p\u003e\u003c/li\u003e\n      \u003cli\u003e\n      \u003cp\u003e\u003ccode\u003emergeValue\u003c/code\u003e mezcla los valores de cada clave en cada partición usando \u003ccode\u003efunc2\u003c/code\u003e\u003c/p\u003e\u003c/li\u003e\n      \u003cli\u003e\n      \u003cp\u003e\u003ccode\u003emergeCombiners\u003c/code\u003e mezcla los resultados de las diferentes particiones mediante \u003ccode\u003efunc3\u003c/code\u003e\u003c/p\u003e\u003c/li\u003e\n    \u003c/ol\u003e\n  \u003c/li\u003e\n  \u003cli\u003e\n  \u003cp\u003eLos valores del RDD de salida pueden tener un tipo diferente al de los valores del RDD de entrada.\u003c/p\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1499540851874_394551752",
+      "id": "20170708-190731_2066132843",
+      "dateCreated": "Jul 8, 2017 7:07:31 PM",
+      "dateStarted": "Jul 9, 2017 4:32:33 PM",
+      "dateFinished": "Jul 9, 2017 4:32:33 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# Para cada clave, obten una tupla que tenga la suma y el número de valores\nsumCount \u003d prdd.combineByKey(\n                            (lambda x: (x, 1)),\n                            (lambda x, y: (x[0]+y, x[1]+1)),\n                            (lambda x, y: (x[0]+y[0], x[1]+y[1])))\n\nprint(sumCount.collect())\n\n# Con el RDD anterior, obtenemos la media de los valores\nm \u003d sumCount.mapValues(lambda v: float(v[0])/v[1])\nprint(m.collect())",
+      "user": "anonymous",
+      "dateUpdated": "Jul 9, 2017 5:22:04 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1499541016202_-1591123642",
+      "id": "20170708-191016_646406872",
+      "dateCreated": "Jul 8, 2017 7:10:16 PM",
+      "dateStarted": "Jul 9, 2017 5:22:04 PM",
+      "dateFinished": "Jul 9, 2017 5:22:06 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n#### Transformaciones sobre claves o valores\n-   `keys()` devuelve un RDD con las claves\n-   `values()` devuelve un RDD con los valores\n-   `sortByKey()` devuelve un RDD clave/valor con las claves ordenadas\n",
+      "user": "anonymous",
+      "dateUpdated": "Jul 8, 2017 7:40:12 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch4\u003eTransformaciones sobre claves o valores\u003c/h4\u003e\n\u003cul\u003e\n  \u003cli\u003e\u003ccode\u003ekeys()\u003c/code\u003e devuelve un RDD con las claves\u003c/li\u003e\n  \u003cli\u003e\u003ccode\u003evalues()\u003c/code\u003e devuelve un RDD con los valores\u003c/li\u003e\n  \u003cli\u003e\u003ccode\u003esortByKey()\u003c/code\u003e devuelve un RDD clave/valor con las claves ordenadas\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1499541077175_-411406893",
+      "id": "20170708-191117_1364066341",
+      "dateCreated": "Jul 8, 2017 7:11:17 PM",
+      "dateStarted": "Jul 8, 2017 7:18:10 PM",
+      "dateFinished": "Jul 8, 2017 7:18:10 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nprint(\"RDD completo: {0:\u003e46s}\".format(prdd.collect()))\nprint(\"RDD con las claves: {0:\u003e25s}\".format(prdd.keys().collect()))\nprint(\"RDD con los valores: {0:\u003e18}\".format(prdd.values().collect()))\nprint(\"RDD con las claves ordenadas: {0}\".format(prdd.sortByKey().collect()))",
+      "user": "anonymous",
+      "dateUpdated": "Jul 28, 2017 3:10:58 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1499541287072_-577524305",
+      "id": "20170708-191447_687177311",
+      "dateCreated": "Jul 8, 2017 7:14:47 PM",
+      "dateStarted": "Jul 9, 2017 5:24:53 PM",
+      "dateFinished": "Jul 9, 2017 5:24:57 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n-   `mapValues(func)` devuelve un RDD aplicando una función sobre los valores\n-   `flatMapValues(func)` devuelve un RDD aplicando una función sobre los valores y “aplanando” la salida",
+      "user": "anonymous",
+      "dateUpdated": "Jul 8, 2017 7:40:23 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cul\u003e\n  \u003cli\u003e\u003ccode\u003emapValues(func)\u003c/code\u003e devuelve un RDD aplicando una función sobre los valores\u003c/li\u003e\n  \u003cli\u003e\u003ccode\u003eflatMapValues(func)\u003c/code\u003e devuelve un RDD aplicando una función sobre los valores y “aplanando” la salida\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1499541317279_1842222825",
+      "id": "20170708-191517_765834006",
+      "dateCreated": "Jul 8, 2017 7:15:17 PM",
+      "dateStarted": "Jul 8, 2017 7:40:20 PM",
+      "dateFinished": "Jul 8, 2017 7:40:20 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nmapv \u003d prdd.mapValues(lambda x: (x, 10*x))\nprint(mapv.collect())\n\nfmapv \u003d prdd.flatMapValues(lambda x: (x, 10*x))\nprint(fmapv.collect())",
+      "user": "anonymous",
+      "dateUpdated": "Jul 9, 2017 5:34:23 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1499541356839_-1517157740",
+      "id": "20170708-191556_1332053395",
+      "dateCreated": "Jul 8, 2017 7:15:56 PM",
+      "dateStarted": "Jul 9, 2017 5:34:24 PM",
+      "dateFinished": "Jul 9, 2017 5:34:25 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Transformaciones sobre dos RDDs clave/valor\nCombinan dos RDDs de tipo clave/valor para obtener un tercer RDD.",
+      "user": "anonymous",
+      "dateUpdated": "Jul 10, 2017 5:22:13 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eTransformaciones sobre dos RDDs clave/valor\u003c/h3\u003e\n\u003cp\u003eCombinan dos RDDs de tipo clave/valor para obtener un tercer RDD.\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1499541445359_-1990860257",
+      "id": "20170708-191725_164724394",
+      "dateCreated": "Jul 8, 2017 7:17:25 PM",
+      "dateStarted": "Jul 10, 2017 5:22:11 PM",
+      "dateFinished": "Jul 10, 2017 5:22:11 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n`join`/`leftOuterJoin`/`rightOuterJoin`/`fullOuterJoin` realizan inner/outer/full joins entre los dos RDDs",
+      "user": "anonymous",
+      "dateUpdated": "Jul 8, 2017 7:40:38 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003e\u003ccode\u003ejoin\u003c/code\u003e/\u003ccode\u003eleftOuterJoin\u003c/code\u003e/\u003ccode\u003erightOuterJoin\u003c/code\u003e/\u003ccode\u003efullOuterJoin\u003c/code\u003e realizan inner/outer/full joins entre los dos RDDs\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1499541557149_1518201309",
+      "id": "20170708-191917_1589064380",
+      "dateCreated": "Jul 8, 2017 7:19:17 PM",
+      "dateStarted": "Jul 8, 2017 7:40:35 PM",
+      "dateFinished": "Jul 8, 2017 7:40:35 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nrdd1 \u003d sc.parallelize([(\"a\", 2), (\"b\", 5), (\"a\", 8)]).cache()\nrdd2 \u003d sc.parallelize([(\"c\", 7), (\"a\", 1)]).cache()\n\nrdd3 \u003d rdd1.join(rdd2)\n\nprint(rdd3.collect())",
+      "user": "anonymous",
+      "dateUpdated": "Jul 9, 2017 5:37:00 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1499541592627_-684070746",
+      "id": "20170708-191952_936041351",
+      "dateCreated": "Jul 8, 2017 7:19:52 PM",
+      "dateStarted": "Jul 9, 2017 5:37:00 PM",
+      "dateFinished": "Jul 9, 2017 5:37:03 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nrdd3 \u003d rdd1.leftOuterJoin(rdd2)\n\nprint(rdd3.collect())",
+      "user": "anonymous",
+      "dateUpdated": "Jul 9, 2017 5:37:33 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1499541616071_778221905",
+      "id": "20170708-192016_18816027",
+      "dateCreated": "Jul 8, 2017 7:20:16 PM",
+      "dateStarted": "Jul 9, 2017 5:37:33 PM",
+      "dateFinished": "Jul 9, 2017 5:37:36 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nrdd3 \u003d rdd1.rightOuterJoin(rdd2)\n\nprint(rdd3.collect())",
+      "user": "anonymous",
+      "dateUpdated": "Jul 9, 2017 5:37:59 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1499541705664_-444186647",
+      "id": "20170708-192145_997237677",
+      "dateCreated": "Jul 8, 2017 7:21:45 PM",
+      "dateStarted": "Jul 9, 2017 5:38:00 PM",
+      "dateFinished": "Jul 9, 2017 5:38:02 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nrdd3 \u003d rdd1.fullOuterJoin(rdd2)\n\nprint(rdd3.collect())",
+      "user": "anonymous",
+      "dateUpdated": "Jul 9, 2017 5:38:23 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1499541811347_-414440033",
+      "id": "20170708-192331_430218468",
+      "dateCreated": "Jul 8, 2017 7:23:31 PM",
+      "dateStarted": "Jul 9, 2017 5:38:23 PM",
+      "dateFinished": "Jul 9, 2017 5:38:26 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n-   `subtractByKey` elimina elementos con una clave presente en otro RDD",
+      "user": "anonymous",
+      "dateUpdated": "Jul 8, 2017 7:40:44 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cul\u003e\n  \u003cli\u003e\u003ccode\u003esubtractByKey\u003c/code\u003e elimina elementos con una clave presente en otro RDD\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1499541829552_1366593274",
+      "id": "20170708-192349_567995858",
+      "dateCreated": "Jul 8, 2017 7:23:49 PM",
+      "dateStarted": "Jul 8, 2017 7:24:32 PM",
+      "dateFinished": "Jul 8, 2017 7:24:32 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nrdd3 \u003d rdd1.subtractByKey(rdd2)\n\nprint(rdd3.collect())",
+      "user": "anonymous",
+      "dateUpdated": "Jul 9, 2017 5:41:27 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1499541872724_1673900376",
+      "id": "20170708-192432_1212352299",
+      "dateCreated": "Jul 8, 2017 7:24:32 PM",
+      "dateStarted": "Jul 9, 2017 5:41:28 PM",
+      "dateFinished": "Jul 9, 2017 5:41:30 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n-   `cogroup` agrupa los datos que comparten la misma clave en ambos RDDs",
+      "user": "anonymous",
+      "dateUpdated": "Jul 8, 2017 7:40:47 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cul\u003e\n  \u003cli\u003e\u003ccode\u003ecogroup\u003c/code\u003e agrupa los datos que comparten la misma clave en ambos RDDs\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1499541917345_-946963159",
+      "id": "20170708-192517_337338238",
+      "dateCreated": "Jul 8, 2017 7:25:17 PM",
+      "dateStarted": "Jul 8, 2017 7:27:26 PM",
+      "dateFinished": "Jul 8, 2017 7:27:26 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nrdd3 \u003d rdd1.cogroup(rdd2)\n\nprint(rdd3.collect())\n\nmap \u003d rdd3.mapValues(lambda v: [list(l) for l in v]).collectAsMap()\n\nprint(map)",
+      "user": "anonymous",
+      "dateUpdated": "Jul 9, 2017 5:41:57 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1499542046311_1375597385",
+      "id": "20170708-192726_248584895",
+      "dateCreated": "Jul 8, 2017 7:27:26 PM",
+      "dateStarted": "Jul 9, 2017 5:41:58 PM",
+      "dateFinished": "Jul 9, 2017 5:42:01 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Acciones sobre RDDs clave/valor\nSobre los RDDs clave/valor podemos aplicar las acciones para RDDs simples y algunas adicionales.\n",
+      "user": "anonymous",
+      "dateUpdated": "Jul 8, 2017 7:40:51 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eAcciones sobre RDDs clave/valor\u003c/h3\u003e\n\u003cp\u003eSobre los RDDs clave/valor podemos aplicar las acciones para RDDs simples y algunas adicionales.\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1499542067599_1537743593",
+      "id": "20170708-192747_13302338",
+      "dateCreated": "Jul 8, 2017 7:27:47 PM",
+      "dateStarted": "Jul 8, 2017 7:32:58 PM",
+      "dateFinished": "Jul 8, 2017 7:32:58 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n-   `collectAsMap()` obtiene el RDD en forma de mapa",
+      "user": "anonymous",
+      "dateUpdated": "Jul 8, 2017 7:40:53 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cul\u003e\n  \u003cli\u003e\u003ccode\u003ecollectAsMap()\u003c/code\u003e obtiene el RDD en forma de mapa\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1499542440894_-884486052",
+      "id": "20170708-193400_1679400807",
+      "dateCreated": "Jul 8, 2017 7:34:00 PM",
+      "dateStarted": "Jul 8, 2017 7:34:50 PM",
+      "dateFinished": "Jul 8, 2017 7:34:50 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nprdd \u003d sc.parallelize([(\"a\", 7), (\"b\", 5), (\"a\", 8)]).cache()\n\nrddMap \u003d prdd.collectAsMap()\n\nprint(rddMap)",
+      "user": "anonymous",
+      "dateUpdated": "Jul 9, 2017 5:55:01 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1499622889614_-323239726",
+      "id": "20170709-175449_337839348",
+      "dateCreated": "Jul 9, 2017 5:54:49 PM",
+      "dateStarted": "Jul 9, 2017 5:55:01 PM",
+      "dateFinished": "Jul 9, 2017 5:55:01 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n-   `countByKey()` devuelve un mapa indicando el número de ocurrencias de cada clave",
+      "user": "anonymous",
+      "dateUpdated": "Jul 8, 2017 7:40:57 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cul\u003e\n  \u003cli\u003e\u003ccode\u003ecountByKey()\u003c/code\u003e devuelve un mapa indicando el número de ocurrencias de cada clave\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1499542378408_59010196",
+      "id": "20170708-193258_247625966",
+      "dateCreated": "Jul 8, 2017 7:32:58 PM",
+      "dateStarted": "Jul 8, 2017 7:33:11 PM",
+      "dateFinished": "Jul 8, 2017 7:33:11 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\ncountMap \u003d prdd.countByKey()\n\nprint(countMap)",
+      "user": "anonymous",
+      "dateUpdated": "Jul 9, 2017 5:57:33 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1499542391811_512475907",
+      "id": "20170708-193311_1223398973",
+      "dateCreated": "Jul 8, 2017 7:33:11 PM",
+      "dateStarted": "Jul 9, 2017 5:57:33 PM",
+      "dateFinished": "Jul 9, 2017 5:57:34 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n-   `lookup(key)` devuelve una lista con los valores asociados con una clave",
+      "user": "anonymous",
+      "dateUpdated": "Jul 8, 2017 7:41:00 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cul\u003e\n  \u003cli\u003e\u003ccode\u003elookup(key)\u003c/code\u003e devuelve una lista con los valores asociados con una clave\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1499542486509_773274365",
+      "id": "20170708-193446_1844221283",
+      "dateCreated": "Jul 8, 2017 7:34:46 PM",
+      "dateStarted": "Jul 8, 2017 7:36:54 PM",
+      "dateFinished": "Jul 8, 2017 7:36:54 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nlistA \u003d prdd.lookup(\u0027a\u0027)\n\nprint(listA)",
+      "user": "anonymous",
+      "dateUpdated": "Jul 9, 2017 5:58:09 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1499542613974_-1942516524",
+      "id": "20170708-193653_1520387021",
+      "dateCreated": "Jul 8, 2017 7:36:53 PM",
+      "dateStarted": "Jul 9, 2017 5:58:10 PM",
+      "dateFinished": "Jul 9, 2017 5:58:10 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### TAREA: Obtener las citas recibidas\n\nEscribir un programa PySpark que, a partir del fichero cite75_99.txt, obtenga el número de citas que recibe cada patente.\n",
+      "user": "anonymous",
+      "dateUpdated": "Jul 13, 2017 12:30:32 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eTAREA: Obtener las citas recibidas\u003c/h3\u003e\n\u003cp\u003eEscribir un programa PySpark que, a partir del fichero cite75_99.txt, obtenga el número de citas que recibe cada patente.\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1499542637943_1621843259",
+      "id": "20170708-193717_1780377850",
+      "dateCreated": "Jul 8, 2017 7:37:17 PM",
+      "dateStarted": "Jul 13, 2017 12:30:30 PM",
+      "dateFinished": "Jul 13, 2017 12:30:30 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "Jul 11, 2017 12:09:20 PM",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1499774960501_522204624",
+      "id": "20170711-120920_1650903483",
+      "dateCreated": "Jul 11, 2017 12:09:20 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### TAREA: Número medio de reivindicaciones por país.\n\nEscribir un programa PySpark que, a partir del fichero apat63_99.txt, obtenga, para cada país de invención, el número medio de reivindicaciones de sus patentes.\n",
+      "user": "anonymous",
+      "dateUpdated": "Jul 23, 2017 11:20:39 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eTAREA: Número medio de reivindicaciones por país.\u003c/h3\u003e\n\u003cp\u003eEscribir un programa PySpark que, a partir del fichero apat63_99.txt, obtenga, para cada país de invención, el número medio de reivindicaciones de sus patentes.\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1499707365327_-501105315",
+      "id": "20170710-172245_301565319",
+      "dateCreated": "Jul 10, 2017 5:22:45 PM",
+      "dateStarted": "Jul 23, 2017 11:20:34 AM",
+      "dateFinished": "Jul 23, 2017 11:20:34 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "Jul 10, 2017 6:22:07 PM",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1499710927670_542400456",
+      "id": "20170710-182207_475616381",
+      "dateCreated": "Jul 10, 2017 6:22:07 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Curso Spark/04 - RDDs con pares clave-valor",
+  "id": "2CNB7X8GR",
+  "angularObjects": {
+    "2CCY33GTB:shared_process": [],
+    "2CCQCYKJM:shared_process": [],
+    "2CD8VB8N5:shared_process": [],
+    "2CEZ3N4ZK:shared_process": [],
+    "2CCN184W1:shared_process": [],
+    "2CCTDCCB9:shared_process": [],
+    "2CBRCMJB7:shared_process": [],
+    "2CDTHYD1N:shared_process": [],
+    "2CD85MNWZ:shared_process": [],
+    "2CEM88R8V:shared_process": [],
+    "2CBSSQJJR:shared_process": [],
+    "2CBG9JDC9:shared_process": [],
+    "2CBJUH5Z5:shared_process": [],
+    "2CET3TKHW:shared_process": [],
+    "2CF1VUR2D:shared_process": [],
+    "2CCZDD8PX:shared_process": [],
+    "2CESEPECG:shared_process": [],
+    "2CCZGPF6E:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

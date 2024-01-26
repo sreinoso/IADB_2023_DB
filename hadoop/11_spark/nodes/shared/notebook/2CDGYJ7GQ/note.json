@@ -1,0 +1,346 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\nIntroducción a [Apache Spark](http://spark.apache.org/)\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d",
+      "dateUpdated": "Mar 30, 2017 5:46:00 PM",
+      "config": {
+        "enabled": false,
+        "tableHide": false,
+        "editorMode": "ace/mode/markdown",
+        "results": {},
+        "editorHide": true,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "colWidth": 12.0
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eIntroducción a \u003ca href\u003d\"http://spark.apache.org/\"\u003eApache Spark\u003c/a\u003e\u003c/h1\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1490895960649_783183210",
+      "id": "20170329-135315_716642539",
+      "dateCreated": "Mar 30, 2017 5:46:00 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Plataforma de computación cluster rápida\n\n-   Extiende modelo MapReduce soportando de manera eficiente otros tipos\n    de computación\n\n    -   queries interactivas\n\n    -   procesado streaming\n\n-   Soporta computaciones en memoria\n\n-   Mejora a MapReduce para aplicaciones complejas (10-20x más rápido)\n\n#### Propósito general\n\n-   Modos de funcionamiento batch, interactivo o streaming\n\n-   Reduce el número de herramientas a emplear y mantener",
+      "dateUpdated": "Jul 15, 2017 12:15:45 PM",
+      "config": {
+        "enabled": false,
+        "editorMode": "ace/mode/markdown",
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 346.0,
+              "optionOpen": false
+            }
+          }
+        },
+        "editorHide": true,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "colWidth": 6.0
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003ePlataforma de computación cluster rápida\u003c/h3\u003e\n\u003cul\u003e\n  \u003cli\u003e\n    \u003cp\u003eExtiende modelo MapReduce soportando de manera eficiente otros tipos\u003cbr/\u003ede computación\u003c/p\u003e\n    \u003cul\u003e\n      \u003cli\u003e\n      \u003cp\u003equeries interactivas\u003c/p\u003e\u003c/li\u003e\n      \u003cli\u003e\n      \u003cp\u003eprocesado streaming\u003c/p\u003e\u003c/li\u003e\n    \u003c/ul\u003e\n  \u003c/li\u003e\n  \u003cli\u003e\n  \u003cp\u003eSoporta computaciones en memoria\u003c/p\u003e\u003c/li\u003e\n  \u003cli\u003e\n  \u003cp\u003eMejora a MapReduce para aplicaciones complejas (10-20x más rápido)\u003c/p\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch4\u003ePropósito general\u003c/h4\u003e\n\u003cul\u003e\n  \u003cli\u003e\n  \u003cp\u003eModos de funcionamiento batch, interactivo o streaming\u003c/p\u003e\u003c/li\u003e\n  \u003cli\u003e\n  \u003cp\u003eReduce el número de herramientas a emplear y mantener\u003c/p\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1490895960650_784337457",
+      "id": "20170329-135340_1848752981",
+      "dateCreated": "Mar 30, 2017 5:46:00 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n#### Historia\n\n-   Iniciado en el 2009 en el UC Berkeley RAD Lab (AMPLab)\n\n    -   Motivado por la ineficiencia de MapReduce para trabajos\n        iterativos e interactivos\n\n-   Mayores contribuidores: [Databricks](https://databricks.com/),\n    Yahoo! e Intel\n\n-   Declarado open source en marzo del 2010\n\n-   Transferido a la Apache Software Foundation en junio de 2013, TLP en\n    febrero de 2014\n\n-   Uno de los proyectos Big Data más activos\n\n-   Versión 1.0 lanzada en mayo de 2014",
+      "dateUpdated": "Mar 30, 2017 5:46:00 PM",
+      "config": {
+        "enabled": false,
+        "tableHide": false,
+        "editorMode": "ace/mode/scala",
+        "results": {},
+        "editorHide": true,
+        "editorSetting": {
+          "language": "scala"
+        },
+        "colWidth": 6.0
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch4\u003eHistoria\u003c/h4\u003e\n\u003cul\u003e\n  \u003cli\u003e\n    \u003cp\u003eIniciado en el 2009 en el UC Berkeley RAD Lab (AMPLab)\u003c/p\u003e\n    \u003cul\u003e\n      \u003cli\u003e\n      \u003cp\u003eMotivado por la ineficiencia de MapReduce para trabajos\u003cbr/\u003eiterativos e interactivos\u003c/p\u003e\u003c/li\u003e\n    \u003c/ul\u003e\n  \u003c/li\u003e\n  \u003cli\u003e\n  \u003cp\u003eMayores contribuidores: \u003ca href\u003d\"https://databricks.com/\"\u003eDatabricks\u003c/a\u003e,\u003cbr/\u003eYahoo! e Intel\u003c/p\u003e\u003c/li\u003e\n  \u003cli\u003e\n  \u003cp\u003eDeclarado open source en marzo del 2010\u003c/p\u003e\u003c/li\u003e\n  \u003cli\u003e\n  \u003cp\u003eTransferido a la Apache Software Foundation en junio de 2013, TLP en\u003cbr/\u003efebrero de 2014\u003c/p\u003e\u003c/li\u003e\n  \u003cli\u003e\n  \u003cp\u003eUno de los proyectos Big Data más activos\u003c/p\u003e\u003c/li\u003e\n  \u003cli\u003e\n  \u003cp\u003eVersión 1.0 lanzada en mayo de 2014\u003c/p\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1490895960650_784337457",
+      "id": "20170329-135351_1564714588",
+      "dateCreated": "Mar 30, 2017 5:46:00 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n#### Características de Spark\n\n-   Soporta gran variedad de workloads: batch, queries interactivas,\n    streaming, machine learning, procesado de grafos\n\n-   APIs en Scala, Java, Python, SQL y R\n\n-   Shells interactivos en Scala y Python\n\n-   Se integra con otras soluciones BigData: HDFS, Cassandra, etc.",
+      "dateUpdated": "Mar 30, 2017 5:46:00 PM",
+      "config": {
+        "enabled": false,
+        "results": {},
+        "editorHide": true,
+        "editorSetting": {},
+        "colWidth": 12.0
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch4\u003eCaracterísticas de Spark\u003c/h4\u003e\n\u003cul\u003e\n  \u003cli\u003e\n  \u003cp\u003eSoporta gran variedad de workloads: batch, queries interactivas,\u003cbr/\u003estreaming, machine learning, procesado de grafos\u003c/p\u003e\u003c/li\u003e\n  \u003cli\u003e\n  \u003cp\u003eAPIs en Scala, Java, Python, SQL y R\u003c/p\u003e\u003c/li\u003e\n  \u003cli\u003e\n  \u003cp\u003eShells interactivos en Scala y Python\u003c/p\u003e\u003c/li\u003e\n  \u003cli\u003e\n  \u003cp\u003eSe integra con otras soluciones BigData: HDFS, Cassandra, etc.\u003c/p\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1490895960651_783952708",
+      "id": "20170329-135406_1457797731",
+      "dateCreated": "Mar 30, 2017 5:46:00 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### La pila Spark\n\u003chr /\u003e\n![sparkstack](http://localhost:8085/figs/sparkstack.png)\n(Fuente: H. Karau, A. Konwinski, P. Wendell, M. Zaharia, \"Learning Spark\", O\u0027Reilly, 2015)\n\u003chr /\u003e",
+      "user": "anonymous",
+      "dateUpdated": "Jul 28, 2017 3:03:43 PM",
+      "config": {
+        "enabled": false,
+        "tableHide": false,
+        "editorMode": "ace/mode/markdown",
+        "results": {},
+        "editorHide": true,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "colWidth": 12.0
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eLa pila Spark\u003c/h3\u003e\n\u003chr /\u003e\n\u003cp\u003e\u003cimg src\u003d\"http://localhost:8085/figs/sparkstack.png\" alt\u003d\"sparkstack\" /\u003e\u003cbr/\u003e(Fuente: H. Karau, A. Konwinski, P. Wendell, M. Zaharia, \u0026ldquo;Learning Spark\u0026rdquo;, O\u0026rsquo;Reilly, 2015)\u003cbr/\u003e\u003chr /\u003e\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1490895960652_782028963",
+      "id": "20170329-135424_1926415155",
+      "dateCreated": "Mar 30, 2017 5:46:00 PM",
+      "dateStarted": "Jul 26, 2017 6:38:47 PM",
+      "dateFinished": "Jul 26, 2017 6:38:47 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Conceptos clave\n\u003chr /\u003e\n![sparkcontext](http://localhost:8085/figs/sparkcontext.png)\n(Fuente: H. Karau, A. Konwinski, P. Wendell, M. Zaharia, \"Learning Spark\", O\u0027Reilly, 2015)\n\u003chr /\u003e",
+      "user": "anonymous",
+      "dateUpdated": "Jul 28, 2017 3:03:30 PM",
+      "config": {
+        "enabled": false,
+        "tableHide": false,
+        "editorMode": "ace/mode/markdown",
+        "results": {},
+        "editorHide": true,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "colWidth": 12.0
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eConceptos clave\u003c/h3\u003e\n\u003chr /\u003e\n\u003cp\u003e\u003cimg src\u003d\"http://localhost:8085/figs/sparkcontext.png\" alt\u003d\"sparkcontext\" /\u003e\u003cbr/\u003e(Fuente: H. Karau, A. Konwinski, P. Wendell, M. Zaharia, \u0026ldquo;Learning Spark\u0026rdquo;, O\u0026rsquo;Reilly, 2015)\u003cbr/\u003e\u003chr /\u003e\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1490895960652_782028963",
+      "id": "20170329-140013_258148990",
+      "dateCreated": "Mar 30, 2017 5:46:00 PM",
+      "dateStarted": "Jul 26, 2017 6:38:55 PM",
+      "dateFinished": "Jul 26, 2017 6:38:55 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n#### Driver\n\n-   Crea un `SparkContext`\n\n-   Convierte el programa de usuario en tareas:\n\n    -   `DAG` de operaciones lógico -\u003e plan de ejecución físico\n\n-   Planifica las tareas en los ejecutores\n\n#### SparkContext\n\n-   El SparkContext realiza la conexión con el cluster\n\n    -   Permite construir RDDs a partir de ficheros, listas u otros\n        objetos\n\n-   En el notebook (o el shell de Spark), se define automáticamente (variable `sc`)\n\n-   Creación en un script Python\n\n        from pyspark import SparkContext\n        sc \u003d SparkContext(master\u003d\"local\", appName\u003d\"Mi app\")\n\n",
+      "dateUpdated": "Jun 8, 2017 12:11:14 PM",
+      "config": {
+        "enabled": false,
+        "editorMode": "ace/mode/markdown",
+        "results": {},
+        "editorHide": true,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "colWidth": 6.0
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch4\u003eDriver\u003c/h4\u003e\n\u003cul\u003e\n  \u003cli\u003e\n  \u003cp\u003eCrea un \u003ccode\u003eSparkContext\u003c/code\u003e\u003c/p\u003e\u003c/li\u003e\n  \u003cli\u003e\n    \u003cp\u003eConvierte el programa de usuario en tareas:\u003c/p\u003e\n    \u003cul\u003e\n      \u003cli\u003e\n      \u003cp\u003e\u003ccode\u003eDAG\u003c/code\u003e de operaciones lógico -\u0026gt; plan de ejecución físico\u003c/p\u003e\u003c/li\u003e\n    \u003c/ul\u003e\n  \u003c/li\u003e\n  \u003cli\u003e\n  \u003cp\u003ePlanifica las tareas en los ejecutores\u003c/p\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch4\u003eSparkContext\u003c/h4\u003e\n\u003cul\u003e\n  \u003cli\u003e\n    \u003cp\u003eEl SparkContext realiza la conexión con el cluster\u003c/p\u003e\n    \u003cul\u003e\n      \u003cli\u003e\n      \u003cp\u003ePermite construir RDDs a partir de ficheros, listas u otros\u003cbr/\u003eobjetos\u003c/p\u003e\u003c/li\u003e\n    \u003c/ul\u003e\n  \u003c/li\u003e\n  \u003cli\u003e\n  \u003cp\u003eEn el notebook (o el shell de Spark), se define automáticamente (variable \u003ccode\u003esc\u003c/code\u003e)\u003c/p\u003e\u003c/li\u003e\n  \u003cli\u003e\n    \u003cp\u003eCreación en un script Python\u003c/p\u003e\n    \u003cpre\u003e\u003ccode\u003efrom pyspark import SparkContext\nsc \u003d SparkContext(master\u003d\u0026quot;local\u0026quot;, appName\u003d\u0026quot;Mi app\u0026quot;)\n\u003c/code\u003e\u003c/pre\u003e\n  \u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1490895960653_781644214",
+      "id": "20170329-141758_1410852644",
+      "dateCreated": "Mar 30, 2017 5:46:00 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n-   Creación en un programa Scala\n   \n        import org.apache.spark.SparkContext\n        import org.apache.spark.SparkContext._\n        import org.apache.spark.SparkConf\n        val conf \u003d new SparkConf().setMaster(\"local\").setAppName(\"My App\")\n        val sc \u003d new SparkContext(conf)\n       \n\n#### Executors\n\n-   Ejecutan las tareas individuales y devuelven los resultados al\n    Driver\n\n-   Proporcionan almacenamiento en memoria para los datos de las tareas\n\n#### Cluster Manager\n\n-   Componente *enchufable* en Spark\n\n-   YARN, Mesos o Spark Standalone",
+      "user": "anonymous",
+      "dateUpdated": "Jun 8, 2017 12:17:07 PM",
+      "config": {
+        "enabled": false,
+        "tableHide": false,
+        "editorMode": "ace/mode/markdown",
+        "results": {},
+        "editorHide": true,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "colWidth": 6.0
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cul\u003e\n  \u003cli\u003eCreación en un programa Scala\n    \u003cpre\u003e\u003ccode\u003eimport org.apache.spark.SparkContext\nimport org.apache.spark.SparkContext._\nimport org.apache.spark.SparkConf\nval conf \u003d new SparkConf().setMaster(\u0026quot;local\u0026quot;).setAppName(\u0026quot;My App\u0026quot;)\nval sc \u003d new SparkContext(conf)\n\u003c/code\u003e\u003c/pre\u003e\n  \u003c/li\u003e\n\u003c/ul\u003e\n\u003ch4\u003eExecutors\u003c/h4\u003e\n\u003cul\u003e\n  \u003cli\u003e\n  \u003cp\u003eEjecutan las tareas individuales y devuelven los resultados al\u003cbr/\u003eDriver\u003c/p\u003e\u003c/li\u003e\n  \u003cli\u003e\n  \u003cp\u003eProporcionan almacenamiento en memoria para los datos de las tareas\u003c/p\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch4\u003eCluster Manager\u003c/h4\u003e\n\u003cul\u003e\n  \u003cli\u003e\n  \u003cp\u003eComponente \u003cem\u003eenchufable\u003c/em\u003e en Spark\u003c/p\u003e\u003c/li\u003e\n  \u003cli\u003e\n  \u003cp\u003eYARN, Mesos o Spark Standalone\u003c/p\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1490895960655_782413712",
+      "id": "20170329-142050_1602884490",
+      "dateCreated": "Mar 30, 2017 5:46:00 PM",
+      "dateStarted": "Jun 8, 2017 12:16:20 PM",
+      "dateFinished": "Jun 8, 2017 12:16:20 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "",
+      "dateUpdated": "Jun 8, 2017 12:17:13 PM",
+      "config": {
+        "enabled": false,
+        "editorMode": "ace/mode/scala",
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "colWidth": 12.0
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1490895960658_793571430",
+      "id": "20170329-142126_1062577642",
+      "dateCreated": "Mar 30, 2017 5:46:00 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Curso Spark/01 - Introducción a Apache Spark",
+  "id": "2CDGYJ7GQ",
+  "angularObjects": {
+    "2CCY33GTB:shared_process": [],
+    "2CCQCYKJM:shared_process": [],
+    "2CD8VB8N5:shared_process": [],
+    "2CEZ3N4ZK:shared_process": [],
+    "2CCN184W1:shared_process": [],
+    "2CCTDCCB9:shared_process": [],
+    "2CBRCMJB7:shared_process": [],
+    "2CDTHYD1N:shared_process": [],
+    "2CD85MNWZ:shared_process": [],
+    "2CEM88R8V:shared_process": [],
+    "2CBSSQJJR:shared_process": [],
+    "2CBG9JDC9:shared_process": [],
+    "2CBJUH5Z5:shared_process": [],
+    "2CET3TKHW:shared_process": [],
+    "2CF1VUR2D:shared_process": [],
+    "2CCZDD8PX:shared_process": [],
+    "2CESEPECG:shared_process": [],
+    "2CCZGPF6E:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}
